@@ -101,9 +101,103 @@
     </script>
 
     <script>
-      function openModal() {
-        console.log('open modal');
+      function openModal(idx) {
+        switch (idx) {
+          case 0:
+            document.getElementById("cM_about").style.display = "block";
+        }
+      }
+
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function(event) { closeCheck(event); }
+      window.ontouchstart = function(event) {closeCheck(event); }
+
+      function closeCheck(event) {
+        target = event.target;
+        if ((event.target.className == "close") || (event.target.className== "modal-content-big")) {
+            // chain parentElements until you find the modal
+            var parent = event.target.parentElement;
+            while (parent.className!="modal") {
+              parent = parent.parentElement;
+            }
+            parent.style.display = "none";
+          }
+          if (event.target.className == "modal") {
+            event.target.style.display = "none";
+          }
       }
     </script>
+
+    <div id="cM_about" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content sixty">
+        <span class="close">&times;</span>
+        <div style="min-height:40vh">
+          <div>
+            <img class="face" align="left" title="Dan Birman" alt="Dan Birman" data-src="images/danface_big.jpg"/>
+          </div>
+          <div>
+            <br>
+            <h2>Leading the <a rel="noopener" style="color:red" href="https://virtualbrainlab.org/"> Virtual Brain Lab</a> project.</h2>
+            <br>
+            <p>I am a Washington Research Foundation Postdoctoral Fellow in the lab of <a rel="noopener" href="http://www.steinmetzlab.net">Nick Steinmetz</a> at <span class="inline-color uw">University of Washington</span>. Recently I have been spending a lot of time skiing <a rel="noopener" style="color:red" href="https://volcano.danbirman.com/">volcanoes</a>!</p>
+
+            <p>I am now leading the <a rel="noopener" style="color:red" href="https://virtualbrainlab.org/">Virtual Brain Lab</a> a project to create intuitive and interactive 3D visualizations of neuroscience data.</p>
+
+            <p>In the past I worked on building <i>linking models</i> to connect physiological measurements to perceptual decisions.</p>
+          </div>
+        </div>
+        <br>
+        <br>
+        <div class="center" style="min-height:10vh; text-align:center">
+          <a style="text-decoration: none" href="mailto:danbirman@gmail.com"><i class="fa fa-envelope-square" aria-hidden="true"></i> Email</a>
+          <br>
+          <!-- <a style="text-decoration: none" href="https://twitter.com/VerticalNeuro/"><i class="fa fa-twitter" style="color:#0071FF" aria-hidden="true"></i> Twitter</a>
+          <br> -->
+          <a style="text-decoration: none" href="https://github.com/dbirman/"><i class="fa fa-github" aria-hidden="true"></i> Github</a>
+          <br>
+          <a style="text-decoration: none" href="https://scholar.google.com/citations?user=7EFz9rcAAAAJ&hl=en" aria-hidden="true"><i class="fa fa-google-plus-square" style="color:#FF2F19"></i> Publications</a>
+        </div>
+        <!-- invis hover images -->
+        <div class="clear">
+          <br>
+          <hr>
+          <br>
+          <ul class="img-list">
+            <li>
+              <div>
+                <img class="logo" alt="UW logo"  data-src="images/W-Logo_Purple_RGB.png"/>
+                <span class="text-content"><span>University of Washington<br>Postdoc<br>2020-Present</span></span>
+              </div>
+            </li>
+            <li>
+              <div>
+                <img class="logo" alt="Stanford logo"  data-src="images/SU_Seal_Red-min.png"/>
+                <span class="text-content"><span>Stanford University<br>PhD Cognitive Neuroscience<br>2014-2019</span></span>
+              </div>
+            </li>
+            <li>
+              <div>
+                <img class="logo" alt="BCCN logo"  data-src="images/ber2-min.png"/>
+                <span class="text-content"><span>BCCN Berlin<br>Research Assistant<br>2012-2013</span></span>
+              </div>
+            </li>
+            <li>
+              <div>
+                <img class="logo" alt="Cornell University logo" data-src="images/culogo.png"/>
+                <span class="text-content"><span>Cornell University<br>BA Biology<br>2008-2012</span></span>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <br>
+        <hr>
+        <br>
+        <div>
+          <p class="copyright">&copy; Dan Birman 2015-Present . <a href="https://github.com/dbirman/web/" rel="noopener">Code</a></p>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
