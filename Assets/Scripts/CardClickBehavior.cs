@@ -20,7 +20,12 @@ public class CardClickBehavior : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+#if UNITY_WEBGL
+            OpenModal(0);
+#endif
+#if UNITY_EDITOR
             Debug.Log("Clicked");
+#endif
             camRotatorBehav.SetControlBlock(true);
         }
     }

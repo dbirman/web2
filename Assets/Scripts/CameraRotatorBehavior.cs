@@ -119,13 +119,14 @@ public class CameraRotatorBehavior : MonoBehaviour
             lastInteractionTime = Time.realtimeSinceStartup;
         }
 
-        if (mouseDownOverBrain)
+        if (mouseDownOverBrain && !Input.GetMouseButtonDown(0))
         {
             // Deal with releasing the mouse (anywhere)
             if (mouseButtonDown == 0 && Input.GetMouseButtonUp(0))
             {
                 lastLeftClick = Time.realtimeSinceStartup;
-                ClearMouseDown(); return;
+                ClearMouseDown();
+                return;
             }
             //if (mouseButtonDown == 1 && Input.GetMouseButtonUp(1))
             //{
