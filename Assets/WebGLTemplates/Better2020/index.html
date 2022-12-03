@@ -93,6 +93,7 @@
           }
         }).then((unityInstance) => {
           myGameInstance = unityInstance
+          replaceDataSrc();
         }).catch((message) => {
           alert(message);
         });
@@ -126,6 +127,15 @@
             event.target.style.display = "none";
           }
       }
+      
+      function replaceDataSrc() {
+        [].forEach.call(document.querySelectorAll('img[data-src]'),    function(img) {
+          img.setAttribute('src', img.getAttribute('data-src'));
+          img.onload = function() {
+            img.removeAttribute('data-src');
+          };
+        });
+      }
     </script>
 
     <div id="cM_about" class="modal">
@@ -135,7 +145,7 @@
         <span class="close">&times;</span>
         <div style="min-height:40vh">
           <div>
-            <img class="face" align="left" title="Dan Birman" alt="Dan Birman" data-src="images/danface_big.jpg"/>
+            <img class="face" align="left" title="Dan Birman" alt="Dan Birman" data-src="images/danface_big.png"/>
           </div>
           <div>
             <br>

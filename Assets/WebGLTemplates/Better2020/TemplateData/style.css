@@ -182,3 +182,148 @@ body {
     -webkit-box-shadow: 1px 1px 3px #000;
     box-shadow: 1px 1px 3px #000;
   }
+  .click {
+    cursor: pointer;
+  }
+  
+  @media only screen and (max-width: 600px) {
+    .face {
+      padding:2vh;
+      width:40vw; 
+      height:auto;
+      border-radius:40vh;
+    }
+  }
+  
+  @media only screen and (min-width: 601px) {
+    .face {
+      padding:2vh;
+      width:40vh; 
+      height:auto;
+      border-radius:40vh;
+    }
+  }
+  
+  .logo {
+    width:30vh;
+  }
+  
+  .copyright {
+    text-align:center;
+  }
+  
+  a {
+    color:#000000;
+  }
+  a.red {
+    color:#C41E3A;
+  }
+  
+  .paper {
+    display:block; 
+    margin:0 auto; 
+    width:30vw;
+  }
+  
+  .clear {
+    clear:left;
+  }
+  
+  .tutorial {
+    width:30vw;
+  }
+  
+  
+  h1.red {
+    color:#445263;
+  }
+  h1.center {
+    text-align:center;
+  }
+  
+  h3.red {
+    color:#445263;
+  }
+  h3.black {
+    color:#000000;
+  }
+  
+  h4.red {
+    color:#445263;
+  }
+  
+  span.right {
+    float:right;
+  }
+  
+  .close:hover { background: #AED2FF; }
+  
+  .text {
+  }
+  
+  .inline-color.stanford {
+    color:#C41E3A;
+  }
+  
+  .inline-color.uw {
+    color:#4b2e83;
+  }
+  
+  .popup-img {
+    border-radius:5px;
+  }
+  
+  
+  ul.img-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+  
+  ul.img-list li {
+    display: inline-block;
+    height: 30vh;
+    margin: 0 1em 1em 0;
+    position: relative;
+    width: 30vh;
+  }
+  
+  span.text-content {
+    /*background: rgba(0,0,0,0.5);*/
+    color: white;
+    cursor: pointer;
+    display: table;
+    height: 30vh;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 30vh;
+  }
+  
+  span.text-content span {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+  }
+  
+  span.text-content {
+    /*background: rgba(0,0,0,0.5);*/
+    color: black;
+    cursor: pointer;
+    display: table;
+    height: 30vh;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 30vh;
+    opacity: 0;
+  }
+  
+  ul.img-list li:hover img {
+    opacity: 0;
+  }
+  
+  ul.img-list li:hover span.text-content {
+    opacity: 1;
+  } 
