@@ -7,6 +7,7 @@
     <title>{{{ PRODUCT_NAME }}}</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
+
   </head>
   <body class="{{{ SPLASH_SCREEN_STYLE.toLowerCase() }}}">
     <div id="unity-container" class="unity-desktop">
@@ -22,7 +23,23 @@
       </div>
     </div>
     <div id="unity-fullscreen-button" style="display: none;"></div>
+    
+    <noscript id="deferred-styles">
+      <link rel="stylesheet" href="fa/css/font-awesome.css">
+    </noscript>
     <script>
+      var loadDeferredStyles = function() {
+        var addStylesNode = document.getElementById("deferred-styles");
+        var replacement = document.createElement("div");
+        replacement.innerHTML = addStylesNode.textContent;
+        document.body.appendChild(replacement)
+        addStylesNode.parentElement.removeChild(addStylesNode);
+      };
+      var raf = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
+      window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+      if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
+      else window.addEventListener('load', loadDeferredStyles);
+
       const hideFullScreenButton = "{{{ HIDE_FULL_SCREEN_BUTTON }}}";
       const buildUrl = "Build";
       const loaderUrl = buildUrl + "/{{{ LOADER_FILENAME }}}";
@@ -51,18 +68,19 @@
       const spinner = document.querySelector('.spinner');
 
       const canFullscreen = (function() {
-        for (const key of [
-            'exitFullscreen',
-            'webkitExitFullscreen',
-            'webkitCancelFullScreen',
-            'mozCancelFullScreen',
-            'msExitFullscreen',
-          ]) {
-          if (key in document) {
-            return true;
-          }
-        }
         return false;
+        // for (const key of [
+        //     'exitFullscreen',
+        //     'webkitExitFullscreen',
+        //     'webkitCancelFullScreen',
+        //     'mozCancelFullScreen',
+        //     'msExitFullscreen',
+        //   ]) {
+        //   if (key in document) {
+        //     return true;
+        //   }
+        // }
+        // return false;
       }());
 
       if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
@@ -83,29 +101,40 @@
           progressBarFull.style.width = `${100 * progress}%`;
         }).then((unityInstance) => {
           loadingCover.style.display = "none";
-          if (canFullscreen) {
-            if (!hideFullScreenButton) {
-              fullscreenButton.style.display = "";
-            }
-            fullscreenButton.onclick = () => {
-              unityInstance.SetFullscreen(1);
-            };
-          }
-        }).then((unityInstance) => {
-          myGameInstance = unityInstance
+          // if (canFullscreen) {
+          //   if (!hideFullScreenButton) {
+          //     fullscreenButton.style.display = "";
+          //   }
+          //   fullscreenButton.onclick = () => {
+          //     unityInstance.SetFullscreen(1);
+          //   };
+          // }
+          window.unity = unityInstance
           replaceDataSrc();
         }).catch((message) => {
           alert(message);
         });
       };
       document.body.appendChild(script);
-    </script>
 
-    <script>
       function openModal(idx) {
         switch (idx) {
           case 0:
             document.getElementById("cM_about").style.display = "block";
+            break
+          case 1:
+            document.getElementById("cM_research").style.display = "block";
+            break
+          case 2:
+            checkVideoLoaded();
+            document.getElementById("cM_teaching").style.display = "block";
+            break
+          case 3:
+            window.open("https://volcano.danbirman.com", '_blank');
+            break
+          case 4:
+            window.unity.SendMessage("SceneControl", "ChangeScene", 1);
+            break
         }
       }
 
@@ -126,6 +155,7 @@
           if (event.target.className == "modal") {
             event.target.style.display = "none";
           }
+        
       }
       
       function replaceDataSrc() {
@@ -136,6 +166,13 @@
           };
         });
       }
+
+      var videoLoaded = false;
+      function checkVideoLoaded() {
+        if (!videoLoaded) {
+          document.getElementById("teachingEmbedVideo").innerHTML = "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/--sBEWfPfKA\" frameborder=\"0\" allow=\"accelerometer; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>";
+        }
+      }
     </script>
 
     <div id="cM_about" class="modal">
@@ -143,19 +180,16 @@
       <!-- Modal content -->
       <div class="modal-content sixty">
         <span class="close">&times;</span>
-        <div style="min-height:40vh">
-          <div>
-            <img class="face" align="left" title="Dan Birman" alt="Dan Birman" data-src="images/danface_big.png"/>
-          </div>
+        <div style="min-height:20vh; text-align: center">
+          <img src="images/dans.png" style="max-height: 40vh;">
+        </div>
+        <div style="min-height:40vh; text-align: center">
           <div>
             <br>
-            <h2>Leading the <a rel="noopener" style="color:red" href="https://virtualbrainlab.org/"> Virtual Brain Lab</a> project.</h2>
+            <h2>Hi! I'm Dan, and I lead the <a rel="noopener" style="color:red" href="https://virtualbrainlab.org/"> Virtual Brain Lab</a> project creating intuitive and interactive 3D visualizations of neuroscience data.</h2>
             <br>
-            <p>I am a Washington Research Foundation Postdoctoral Fellow in the lab of <a rel="noopener" href="http://www.steinmetzlab.net">Nick Steinmetz</a> at <span class="inline-color uw">University of Washington</span>. Recently I have been spending a lot of time skiing <a rel="noopener" style="color:red" href="https://volcano.danbirman.com/">volcanoes</a>!</p>
-
-            <p>I am now leading the <a rel="noopener" style="color:red" href="https://virtualbrainlab.org/">Virtual Brain Lab</a> a project to create intuitive and interactive 3D visualizations of neuroscience data.</p>
-
-            <p>In the past I worked on building <i>linking models</i> to connect physiological measurements to perceptual decisions.</p>
+            <p style="color:#FF2F19">I'm on the job market looking for a tenure-track position to lead a research group working on open-source tool development with close collaborations with experimental neuroscientists. Please get in touch if you think you have a position that fits!</p>
+            <p>Right now, I am a Washington Research Foundation Postdoctoral Fellow in the lab of <a rel="noopener" href="http://www.steinmetzlab.net">Nick Steinmetz</a> at <span class="inline-color uw">University of Washington</span>.</p>
           </div>
         </div>
         <br>
@@ -205,9 +239,118 @@
         <hr>
         <br>
         <div>
-          <p class="copyright">&copy; Dan Birman 2015-Present . <a href="https://github.com/dbirman/web/" rel="noopener">Code</a></p>
+          <p class="copyright">&copy; Dan Birman 2023-Present . <a href="https://github.com/dbirman/web2/" rel="noopener">Code</a></p>
         </div>
       </div>
     </div>
+    
+  <div id="cM_research" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content fifty">
+      <span class="close">&times;</span>
+      <p>In the past, I studied visual attention using functional MRI, electrophysiology, and widefield calcium imaging. I now lead the <a href="https://virtualbrainlab.org" rel="noopener">Virtual Brain Lab</a>, where we are developing intuitive and interactive 3D visualization tools for neuroscience.</p>
+
+      <h1 class="red center">Virtual Brain Lab</h1>
+      <h2>Pinpoint: multi-probe trajectory planning for Neuropixels in web browsers</h2>
+
+      <h2>Urchin: universal renderer for neuroscience</h2>
+      
+      <h2>GLUE: graphics library for Unity experiments</h2>
+
+      <h1 class="red center">Visual Attention</h1>
+
+      <h1 class="red center">Point of No Return</h1>
+
+      <p>with Justin Gardner at <a href="http://gru.stanford.edu/doku.php" rel="noopener">Gardner Lab</a>; <a href="https://github.com/dbirman/att_awe/" rel="noopener">Code</a>; <a href="https://github.com/justingardner/grustim/blob/master/cohcon.m" rel="noopener">Stim</a>; <a href="https://osf.io/s7j9p/" rel="noopener">Data</a></p>
+    </div>
+  </div>
+
+  <div id="cM_teaching" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content fifty">
+      <span class="close">&times;</span>
+      <p>I have taught nearly two-dozen neuroscience courses, including a course I co-designed from scratch "Vertical Neuroscience" as well as acting as Head TA for a 250-student introductory neuroscience class. My teaching and mentoring during graduate school earned me Stanford's highest teaching honor, the Gores award.</p>
+
+      <h1 class="red center">Vertical Neuroscience</h1>
+      <div id="teachingEmbedVideo" style="text-align:center">
+      </div>
+
+      <h1 class="red center">Teaching</h1>
+      <h2>Cognitive Neuroscience</h2>
+      <h4 class="red">Brain Machine Interface Seminar (NEUSCI 450)
+        <span class="right">Fall 2020</span>
+      </h4>
+      <p>Instructor: Daniel Birman</p>
+
+      <h4 class="red">Vertical Neuroscience (PSYCH 149s) - <a href="https://news.stanford.edu/2019/10/15/neuroscience-lens-rock-climbing/">Featured in Stanford news!</a>
+        <span class="right">Summer 2019</span>
+      </h4>
+      <p>Instructors: Daniel Birman, Corey Fernandez</p>
+
+      <h4 class="red">Introduction to cognitive neuroscience (PSYCH 50)
+        <span class="right">Winter 2019, Winter 2018, Winter 2017, Winter 2016</span>
+      </h4>
+      <p>Instructor: Justin Gardner
+        <br>
+      Head TA: Daniel Birman
+        <br>
+      2019 TAs: Akshay Jagadeesh, Minyoung Lee, Jon Walters, Ian Eisenberg, Josiah Leong, Kawena Hirayama; Undergraduate TAs: Megumi Sano, Graham Todd, Greg Weaver, Vinh Ton, Kendall Costello, Michael Ko
+        <br>
+      2018 TAs: Akshay Jagadeesh, Minyoung Lee, Guillaume Riesen, Jon Walters; Undergraduate TAs: Emma Master, Stephanie Zhang, Kawena Hirayama, Henry Ingram, Storm Foley
+        <br>
+      2017 TAs: Minyoung Lee, Lior Bugatus, Zeynep Enkavi, Mona Rosenke, Guillaume Riesen
+        <br>
+      2016 TAs: Anna Khazenzon, Natalia Velez, Anthony Stigliani, Rosemary Le</p>
+
+      <h4 class="red">Cognitive neuroscience - first year seminar for neuroscience graduate students (NEPR 207)
+        <span class="right">Spring 2018, Spring 2017, Spring 2016</span>
+      </h4>
+      <p>Instructors: Russ Poldrack, Justin Gardner<br>TA: Daniel Birman</p>
+
+
+      <h2>Statistics</h2>
+      <h4 class="red">Methods for behavioral and social sciences (PSYCH 252)
+        <span class="right">Fall 2016</span>
+      </h4>
+      <p>Instructors: Ewart Thomas, Benoit Monin<br>TAs: Daniel Birman, Stephanie Gagnon, Robert Hawkins</p>
+
+      <h2>Outdoor Education</h2>
+
+      <h4 class="red">Vertical rescue
+        <span class="right">Winter 2019, Spring 2018, Winter 2018, Spring 2012, Spring 2011</span>
+      </h4>
+      <h4 class="red">Belaying from above and rappelling clinic
+        <span class="right">Winter 2019, Fall 2018</span>
+      </h4>
+      <h4 class="red">Sport leading clinic
+        <span class="right">Winter 2019, Fall 2018, Spring 2018, Winter 2018</span>
+      </h4>
+      <h4 class="red">Crack climbing clinic
+        <span class="right">Fall 2017</span>
+      </h4>
+      <h4 class="red">Winter camping
+        <span class="right">Spring 2012, 2011, 2010</span>
+      </h4>
+      <h4 class="red">Multipitch climbing: Red Rock
+        <span class="right">Spring 2012</span>
+      </h4>
+      <h4 class="red">Multipitch climbing: Shawangunks
+        <span class="right">Fall 2011</span>
+      </h4>
+      
+      <h1 class="red center">Mentoring</h1>
+      <h2>Research Advisor, University of Washington</h2>
+      <h4 class="red">Selina Li<span class="right">2023-</span></h4>
+      <h4 class="red">Jasmine Schoch<span class="right">2022-</span></h4>
+      <h4 class="red">Kenneth Yang<span class="right">2022-</span></h4>
+      <h4 class="red">Kai Nylund<span class="right">2021-2022</span></h4>
+      <h2>Research Advisor, Stanford University</h2>
+      <h4 class="red">Kai Fox<span class="right">2018-2022</span></h4>
+      <h4 class="red">Aarush Selvan<span class="right">2017-2018</span></h4>
+    </div>
+  </div>
+
   </body>
 </html>
