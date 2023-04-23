@@ -256,9 +256,8 @@ svg { position:fixed; z-index:0; top:0; left:0; height:100%; width:100% }
   }
   
   .paper {
-    display:block; 
-    margin:0 auto; 
-    width:30vw;
+    text-align: center;
+    width:10vh;
   }
   
   .clear {
