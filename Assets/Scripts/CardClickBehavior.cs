@@ -9,6 +9,7 @@ public class CardClickBehavior : MonoBehaviour
     [DllImport("__Internal")]
     private static extern void OpenModal(int idx);
 
+    [SerializeField] private int _modalIdx;
     [SerializeField] private CameraRotatorBehavior camRotatorBehav;
 
     private void OnMouseOver()
@@ -20,11 +21,11 @@ public class CardClickBehavior : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-#if UNITY_WEBGL
-            OpenModal(0);
+#if UNITY_WEBGL && !UNITY_EDITOR
+            OpenModal(_modalIdx);
 #endif
 #if UNITY_EDITOR
-            Debug.Log("Clicked");
+            Debug.Log($"Clicked modal {_modalIdx}");
 #endif
             camRotatorBehav.SetControlBlock(true);
         }

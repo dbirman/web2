@@ -42,7 +42,7 @@ public class CameraRotatorBehavior : MonoBehaviour
     // auto-rotation
     private bool autoRotate;
     private float autoRotateSpeed = 10.0f;
-    private float noInteractionDelay = 5.0f;
+    private float noInteractionDelay = 10.0f;
     private float lastInteractionTime;
 
     private void Awake()
