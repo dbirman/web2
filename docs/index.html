@@ -7,6 +7,7 @@
     <title>web2</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
+
   </head>
   <body class="dark">
     <div id="unity-container" class="unity-desktop">
@@ -22,18 +23,34 @@
       </div>
     </div>
     <div id="unity-fullscreen-button" style="display: none;"></div>
+    
+    <noscript id="deferred-styles">
+      <link rel="stylesheet" href="fa/css/font-awesome.css">
+    </noscript>
     <script>
+      var loadDeferredStyles = function() {
+        var addStylesNode = document.getElementById("deferred-styles");
+        var replacement = document.createElement("div");
+        replacement.innerHTML = addStylesNode.textContent;
+        document.body.appendChild(replacement)
+        addStylesNode.parentElement.removeChild(addStylesNode);
+      };
+      var raf = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
+      window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+      if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
+      else window.addEventListener('load', loadDeferredStyles);
+
       const hideFullScreenButton = "";
       const buildUrl = "Build";
-      const loaderUrl = buildUrl + "/docs.loader.js";
+      const loaderUrl = buildUrl + "/Web2.loader.js";
       const config = {
-        dataUrl: buildUrl + "/docs.data.gz",
-        frameworkUrl: buildUrl + "/docs.framework.js.gz",
-        codeUrl: buildUrl + "/docs.wasm.gz",
+        dataUrl: buildUrl + "/Web2.data.unityweb",
+        frameworkUrl: buildUrl + "/Web2.framework.js.unityweb",
+        codeUrl: buildUrl + "/Web2.wasm.unityweb",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "Dan Birman @ Virtual Brain Lab",
         productName: "web2",
-        productVersion: "0.1.0",
+        productVersion: "0.2.0",
       };
 
       const container = document.querySelector("#unity-container");
@@ -45,18 +62,19 @@
       const spinner = document.querySelector('.spinner');
 
       const canFullscreen = (function() {
-        for (const key of [
-            'exitFullscreen',
-            'webkitExitFullscreen',
-            'webkitCancelFullScreen',
-            'mozCancelFullScreen',
-            'msExitFullscreen',
-          ]) {
-          if (key in document) {
-            return true;
-          }
-        }
         return false;
+        // for (const key of [
+        //     'exitFullscreen',
+        //     'webkitExitFullscreen',
+        //     'webkitCancelFullScreen',
+        //     'mozCancelFullScreen',
+        //     'msExitFullscreen',
+        //   ]) {
+        //   if (key in document) {
+        //     return true;
+        //   }
+        // }
+        // return false;
       }());
 
       if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
@@ -74,27 +92,279 @@
           progressBarFull.style.width = `${100 * progress}%`;
         }).then((unityInstance) => {
           loadingCover.style.display = "none";
-          if (canFullscreen) {
-            if (!hideFullScreenButton) {
-              fullscreenButton.style.display = "";
-            }
-            fullscreenButton.onclick = () => {
-              unityInstance.SetFullscreen(1);
-            };
-          }
-        }).then((unityInstance) => {
-          myGameInstance = unityInstance
+          // if (canFullscreen) {
+          //   if (!hideFullScreenButton) {
+          //     fullscreenButton.style.display = "";
+          //   }
+          //   fullscreenButton.onclick = () => {
+          //     unityInstance.SetFullscreen(1);
+          //   };
+          // }
+          window.unity = unityInstance
+          replaceDataSrc();
         }).catch((message) => {
           alert(message);
         });
       };
       document.body.appendChild(script);
-    </script>
+</script>
+<script>
+      function openModal(idx) {
+        switch (idx) {
+          case 0:
+            document.getElementById("cM_about").style.display = "block";
+            break
+          case 1:
+            document.getElementById("cM_research").style.display = "block";
+            break
+          case 2:
+            checkVideoLoaded();
+            document.getElementById("cM_teaching").style.display = "block";
+            break
+          case 3:
+            window.open("https://volcano.danbirman.com", '_blank');
+            break
+          case 4:
+            window.unity.SendMessage("SceneControl", "ChangeScene", 1);
+            break
+        }
+      }
 
-    <script>
-      function openModal() {
-        console.log('open modal');
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function(event) { closeCheck(event); }
+      window.ontouchstart = function(event) {closeCheck(event); }
+
+      function closeCheck(event) {
+        target = event.target;
+        if ((event.target.className == "close") || (event.target.className== "modal-content-big")) {
+            // chain parentElements until you find the modal
+            var parent = event.target.parentElement;
+            while (parent.className!="modal") {
+              parent = parent.parentElement;
+            }
+            parent.style.display = "none";
+          }
+          if (event.target.className == "modal") {
+            event.target.style.display = "none";
+          }
+        
+      }
+      
+      function replaceDataSrc() {
+        [].forEach.call(document.querySelectorAll('img[data-src]'),    function(img) {
+          img.setAttribute('src', img.getAttribute('data-src'));
+          img.onload = function() {
+            img.removeAttribute('data-src');
+          };
+        });
+      }
+
+      var videoLoaded = false;
+      function checkVideoLoaded() {
+        if (!videoLoaded) {
+          document.getElementById("teachingEmbedVideo").innerHTML = "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/--sBEWfPfKA\" frameborder=\"0\" allow=\"accelerometer; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>";
+        }
       }
     </script>
+
+    <div id="cM_about" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content sixty">
+        <span class="close">&times;</span>
+        <div style="min-height:20vh; text-align: center">
+          <img src="images/dans.png" style="max-height: 40vh;">
+        </div>
+        <div style="min-height:40vh; text-align: center">
+          <div>
+            <br>
+            <h2>Hi! I'm Dan, and I lead the <a rel="noopener" style="color:red" href="https://virtualbrainlab.org/"> Virtual Brain Lab</a> project creating intuitive and interactive 3D visualizations of neuroscience data.</h2>
+            <br>
+            <p style="color:#FF2F19">I'm on the job market looking for a tenure-track position to lead a research group working on open-source tool development with close collaborations with experimental neuroscientists. Please get in touch if you think you have a position that fits!</p>
+            <p>Right now, I am a Washington Research Foundation Postdoctoral Fellow in the lab of <a rel="noopener" href="http://www.steinmetzlab.net">Nick Steinmetz</a> at <span class="inline-color uw">University of Washington</span>.</p>
+          </div>
+        </div>
+        <br>
+        <br>
+        <div class="center" style="min-height:10vh; text-align:center">
+          <a style="text-decoration: none" href="mailto:danbirman@gmail.com"><i class="fa fa-envelope-square" aria-hidden="true"></i> Email</a>
+          <br>
+          <!-- <a style="text-decoration: none" href="https://twitter.com/VerticalNeuro/"><i class="fa fa-twitter" style="color:#0071FF" aria-hidden="true"></i> Twitter</a>
+          <br> -->
+          <a style="text-decoration: none" href="https://github.com/dbirman/"><i class="fa fa-github" aria-hidden="true"></i> Github</a>
+          <br>
+          <a style="text-decoration: none" href="https://scholar.google.com/citations?user=7EFz9rcAAAAJ&hl=en" aria-hidden="true"><i class="fa fa-google-plus-square" style="color:#FF2F19"></i> Publications</a>
+        </div>
+        <!-- invis hover images -->
+        <div class="clear">
+          <br>
+          <hr>
+          <br>
+          <ul class="img-list">
+            <li>
+              <div>
+                <img class="logo" alt="UW logo"  data-src="images/W-Logo_Purple_RGB.png"/>
+                <span class="text-content"><span>University of Washington<br>Postdoc<br>2020-Present</span></span>
+              </div>
+            </li>
+            <li>
+              <div>
+                <img class="logo" alt="Stanford logo"  data-src="images/SU_Seal_Red-min.png"/>
+                <span class="text-content"><span>Stanford University<br>PhD Cognitive Neuroscience<br>2014-2019</span></span>
+              </div>
+            </li>
+            <li>
+              <div>
+                <img class="logo" alt="BCCN logo"  data-src="images/ber2-min.png"/>
+                <span class="text-content"><span>BCCN Berlin<br>Research Assistant<br>2012-2013</span></span>
+              </div>
+            </li>
+            <li>
+              <div>
+                <img class="logo" alt="Cornell University logo" data-src="images/culogo.png"/>
+                <span class="text-content"><span>Cornell University<br>BA Biology<br>2008-2012</span></span>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <br>
+        <hr>
+        <br>
+        <div>
+          <p class="copyright">&copy; Dan Birman 2023-Present . <a href="https://github.com/dbirman/web2/" rel="noopener">Code</a></p>
+        </div>
+      </div>
+    </div>
+    
+  <div id="cM_research" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content fifty">
+      <span class="close">&times;</span>
+      <p>In the past, I studied visual attention using functional MRI, electrophysiology, and widefield calcium imaging. I now lead the <a href="https://virtualbrainlab.org" rel="noopener">Virtual Brain Lab</a>, where we are developing intuitive and interactive 3D visualization tools for neuroscience.</p>
+
+      <h1 class="red center">Virtual Brain Lab</h1>
+      <h2>Pinpoint: multi-probe trajectory planning for Neuropixels in web browsers</h2>
+      <p>The scale of modern rodent neuroscience is quickly expanding beyond the capabilities of even expert experimentalists. Pinpoint brings together large-scale anatomical atlases in an intuitive 3D environment You can learn more at <a href="https://virtualbrainlab.org/pinpoint/installation_and_use.html">Pinpoint's website</a></p>
+
+      <h2>Urchin: universal renderer for neuroscience</h2>
+      
+      <h2>Glue: graphics library for Unity experiments</h2>
+
+      <h1 class="red center">Visual Attention</h1>
+
+      <p>As a graduate student working with <a class="red" href="http://gru.stanford.edu">Justin Gardner</a> one of my major projects involved looking at how we can use motion visibility to understand how the brain "reads out" from sensory representations during perceptual decision making.</p>
+
+      <h3 class="red">A flexible readout mechanism of human sensory representations</h3>
+      <a href="https://www-nature-com.stanford.idm.oclc.org/articles/s41467-019-11448-7">Birman, D., & Gardner, J. L. (2019). A flexible readout mechanism of human sensory representations. <i>Nature Communications</i>.</a>
+      <br>
+      <a href="./pdfs/birman_ncomms_2019.pdf"><img class="paper" src="./images/pdf-icon.png"></a>
+
+      <br>
+      <h3 class="red">A quantitative framework for motion visibility in human cortex</h3>
+      <a href="https://www.physiology.org/doi/abs/10.1152/jn.00433.2018">Birman, D., & Gardner, J. L. (2018). A quantitative framework for motion visibility in human cortex. <i>Journal of neurophysiology</i>.</a>
+      <br>
+      <a href="./pdfs/birman_jnphys_2018.pdf"><img class="paper" src="./images/pdf-icon.png"></a>
+
+      <h1 class="red center">Point of No Return</h1>
+
+      <p>In 2013 I lived in Berlin and worked in the lab of John-Dylan Haynes on this project.</p>
+      <p>
+        We have an intuition that we "commit" to a decision at a specific moment. Despite this intuition early neuroscience researchers found that brain activity becomes predictive of our intentions far in advance, sometimes up to 10 seconds. In this experiment we showed that in reality the <i>point of no return</i>, after which an action is guaranteed to happen, occurs only about 200 ms before motor activity. Until the point of no return the brain has not committed with no possibility of cancelling.
+      </p>
+      <p>
+        Schultze-Kraft, M.*, Birman, D.*, Rusconi, M., Allefeld, C., Görgen, K., Dähne, S., ... & Haynes, J. D. (2015). The point of no return in vetoing self-initiated movements. <i>Proceedings of the National Academy of Sciences</i>, 201513569. *Equal author contribution. at <a href="https://sites.google.com/site/hayneslab/" rel="noopener">hayneslab</a> 
+        <br>
+        <a href="./pdfs/birman_pnas_2015.pdf"><img class="paper" src="./images/pdf-icon.png"></a>
+      </p>
+    </div>
+  </div>
+
+  <div id="cM_teaching" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content fifty">
+      <span class="close">&times;</span>
+      <p>I have taught both introductory and upper-level neuroscience courses for undergraduates and graduate students. Among the highlights have been teaching a course I co-designed from scratch "Vertical Neuroscience" using rock climbing to introduce concepts in sensory and motor neuroscience, as well as leading a team of graduate and undergraduate teaching assistants for a 250-student introductory neuroscience class.</p>
+
+      <h1 class="red center">Vertical Neuroscience</h1>
+      <div id="teachingEmbedVideo" style="text-align:center">
+      </div>
+
+      <h1 class="red center">Teaching</h1>
+      <h2>Cognitive Neuroscience</h2>
+      <h4 class="red">Brain Machine Interface Seminar (NEUSCI 450)
+        <span class="right">Fall 2020</span>
+      </h4>
+      <p>Instructor: Daniel Birman</p>
+
+      <h4 class="red">Vertical Neuroscience (PSYCH 149s) - <a href="https://news.stanford.edu/2019/10/15/neuroscience-lens-rock-climbing/">Featured in Stanford news!</a>
+        <span class="right">Summer 2019</span>
+      </h4>
+      <p>Instructors: Daniel Birman, Corey Fernandez</p>
+
+      <h4 class="red">Introduction to cognitive neuroscience (PSYCH 50)
+        <span class="right">Winter 2019, Winter 2018, Winter 2017, Winter 2016</span>
+      </h4>
+      <p>Instructor: Justin Gardner
+        <br>
+      Head TA: Daniel Birman
+        <br>
+      2019 TAs: Akshay Jagadeesh, Minyoung Lee, Jon Walters, Ian Eisenberg, Josiah Leong, Kawena Hirayama; Undergraduate TAs: Megumi Sano, Graham Todd, Greg Weaver, Vinh Ton, Kendall Costello, Michael Ko
+        <br>
+      2018 TAs: Akshay Jagadeesh, Minyoung Lee, Guillaume Riesen, Jon Walters; Undergraduate TAs: Emma Master, Stephanie Zhang, Kawena Hirayama, Henry Ingram, Storm Foley
+        <br>
+      2017 TAs: Minyoung Lee, Lior Bugatus, Zeynep Enkavi, Mona Rosenke, Guillaume Riesen
+        <br>
+      2016 TAs: Anna Khazenzon, Natalia Velez, Anthony Stigliani, Rosemary Le</p>
+
+      <h4 class="red">Cognitive neuroscience - first year seminar for neuroscience graduate students (NEPR 207)
+        <span class="right">Spring 2018, Spring 2017, Spring 2016</span>
+      </h4>
+      <p>Instructors: Russ Poldrack, Justin Gardner<br>TA: Daniel Birman</p>
+
+
+      <h2>Statistics</h2>
+      <h4 class="red">Methods for behavioral and social sciences (PSYCH 252)
+        <span class="right">Fall 2016</span>
+      </h4>
+      <p>Instructors: Ewart Thomas, Benoit Monin<br>TAs: Daniel Birman, Stephanie Gagnon, Robert Hawkins</p>
+
+      <h2>Outdoor Education</h2>
+
+      <h4 class="red">Vertical rescue
+        <span class="right">Winter 2019, Spring 2018, Winter 2018, Spring 2012, Spring 2011</span>
+      </h4>
+      <h4 class="red">Belaying from above and rappelling clinic
+        <span class="right">Winter 2019, Fall 2018</span>
+      </h4>
+      <h4 class="red">Sport leading clinic
+        <span class="right">Winter 2019, Fall 2018, Spring 2018, Winter 2018</span>
+      </h4>
+      <h4 class="red">Crack climbing clinic
+        <span class="right">Fall 2017</span>
+      </h4>
+      <h4 class="red">Winter camping
+        <span class="right">Spring 2012, 2011, 2010</span>
+      </h4>
+      <h4 class="red">Multipitch climbing: Red Rock
+        <span class="right">Spring 2012</span>
+      </h4>
+      <h4 class="red">Multipitch climbing: Shawangunks
+        <span class="right">Fall 2011</span>
+      </h4>
+      
+      <h1 class="red center">Mentoring</h1>
+      <h2>Research Advisor, University of Washington</h2>
+      <h4 class="red">Selina Li<span class="right">2023-</span></h4>
+      <h4 class="red">Jasmine Schoch<span class="right">2022-</span></h4>
+      <h4 class="red">Kenneth Yang<span class="right">2022-</span></h4>
+      <h4 class="red">Kai Nylund<span class="right">2021-2022</span></h4>
+      <h2>Research Advisor, Stanford University</h2>
+      <h4 class="red">Kai Fox<span class="right">2018-2022</span></h4>
+      <h4 class="red">Aarush Selvan<span class="right">2017-2018</span></h4>
+    </div>
+  </div>
+
   </body>
 </html>
