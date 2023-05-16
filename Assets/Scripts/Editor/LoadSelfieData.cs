@@ -25,8 +25,10 @@ public class LoadSelfieData : MonoBehaviour
             go.transform.rotation = Quaternion.Euler(90f - (float)row["x"], -(float)row["y"], 0f);
 
             SelfieUIBehavior selfieUIBehavior = go.GetComponentInChildren<SelfieUIBehavior>();
-            selfieUIBehavior._selfieSprite = AssetDatabase.LoadAssetAtPath<Sprite>($"Assets/Data/images/{row["image"]}.jpg");
             selfieUIBehavior._text = (string)row["name"];
+            selfieUIBehavior._spriteName = (string)row["image"];
+
+            Debug.Log($"{go.name}, {selfieUIBehavior._text}, {selfieUIBehavior._spriteName}");
         }
     }
 }
