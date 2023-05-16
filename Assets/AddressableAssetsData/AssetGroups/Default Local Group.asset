@@ -313,10 +313,6 @@ MonoBehaviour:
     m_Address: Assets/AddressableAssets/images/matthes7.jpg
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 7460f78694a3e1d41bc117134342ecc5
-    m_Address: Assets/AddressableAssets/images/slot_couloir.jpeg
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: 4bf12ab8bf9a6b04dbacc3501218f063
     m_Address: Assets/AddressableAssets/images/gunks_highe_bachelorx.jpg
     m_ReadOnly: 0
@@ -351,10 +347,6 @@ MonoBehaviour:
     m_SerializedLabels: []
   - m_GUID: 0909b4da5b6acc64e843b5116b513a2f
     m_Address: Assets/AddressableAssets/images/dark_shadows_2018-min.jpg
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: df5480980d59073488b77c21220584f4
-    m_Address: Assets/AddressableAssets/images/rainier_muir_23.jpeg
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: b1f10c8a2b944d64b90d792fbc170b50

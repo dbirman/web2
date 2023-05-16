@@ -33,6 +33,8 @@ public class SelfieUIBehavior : MonoBehaviour
 
             _selfieSprite = spriteLoader.Result;
         }
+        loading = false;
+
         SelfiePanelBehavior.SetSprite(_selfieSprite);
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraRotatorBehavior : MonoBehaviour
@@ -5,6 +6,8 @@ public class CameraRotatorBehavior : MonoBehaviour
     [SerializeField] Transform brainCameraRotator;
     [SerializeField] Camera brainCamera;
 
+    [SerializeField] private Transform _selfieParentT;
+    private HashSet<Transform> _targetTransforms;
 
     private Vector3 initialCameraRotatorPosition;
     private Vector3 cameraPositionOffset;
@@ -45,6 +48,9 @@ public class CameraRotatorBehavior : MonoBehaviour
     private float noInteractionDelay = 10.0f;
     private float lastInteractionTime;
 
+    private float _origFOV = 52f;
+    private Vector3 _origScale = 0.02f * Vector3.one;
+
     private void Awake()
     {
         // Artifically limit the framerate
@@ -55,21 +61,24 @@ public class CameraRotatorBehavior : MonoBehaviour
         initialCameraRotatorPosition = brainCameraRotator.transform.position;
         cameraPositionOffset = Vector3.zero;
         autoRotate = true;
+
+        // Get all the target transforms
+        _targetTransforms = new HashSet<Transform>();
+        foreach (Transform t in _selfieParentT)
+            _targetTransforms.Add(t.GetChild(0));
     }
 
     void Update()
     {
         // Check the scroll wheel and deal with the field of view
-        float fov = brainCamera.orthographic ? brainCamera.orthographicSize : brainCamera.fieldOfView;
 
         float scroll = -Input.GetAxis("Mouse ScrollWheel");
-        fov += (brainCamera.orthographic ? orthoDelta : fovDelta) * scroll * SpeedMultiplier();
-        fov = Mathf.Clamp(fov, minFoV, maxFoV);
+        brainCamera.fieldOfView += (brainCamera.orthographic ? orthoDelta : fovDelta) * scroll * SpeedMultiplier();
+        brainCamera.fieldOfView = Mathf.Clamp(brainCamera.fieldOfView, minFoV, maxFoV);
 
-        if (brainCamera.orthographic)
-            brainCamera.orthographicSize = fov;
-        else
-            brainCamera.fieldOfView = fov;
+        Vector3 ratioV = _origScale * brainCamera.fieldOfView / _origFOV;
+        foreach (Transform t in _targetTransforms)
+            t.localScale = ratioV;
 
         // Now check if the mouse wheel is being held down
         //if (Input.GetMouseButton(1) && !blockBrainControl)
