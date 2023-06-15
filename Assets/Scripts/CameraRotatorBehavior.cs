@@ -21,8 +21,8 @@ public class CameraRotatorBehavior : MonoBehaviour
     public static float doubleClickTime = 0.2f;
     public float minFoV = 15.0f;
     public float maxFoV = 90.0f;
-    public float fovDelta = 15.0f;
-    public float orthoDelta = 5.0f;
+    public float fovDelta = 7.5f;
+    public float orthoDelta = 2.5f;
     public float moveSpeed = 10.0f;
     public float rotSpeed = 200.0f;
     [SerializeField] private float shiftMult = 2f;
@@ -73,7 +73,7 @@ public class CameraRotatorBehavior : MonoBehaviour
         // Check the scroll wheel and deal with the field of view
 
         float scroll = -Input.GetAxis("Mouse ScrollWheel");
-        brainCamera.fieldOfView += (brainCamera.orthographic ? orthoDelta : fovDelta) * scroll * SpeedMultiplier();
+        brainCamera.fieldOfView += (brainCamera.orthographic ? orthoDelta : fovDelta) * scroll * rotSpeedReduction();
         brainCamera.fieldOfView = Mathf.Clamp(brainCamera.fieldOfView, minFoV, maxFoV);
 
         Vector3 ratioV = _origScale * brainCamera.fieldOfView / _origFOV;
@@ -105,21 +105,12 @@ public class CameraRotatorBehavior : MonoBehaviour
         else
             BrainCameraControl_noTarget();
 
-        if (!mouseDownOverBrain && (Time.realtimeSinceStartup - lastInteractionTime) > noInteractionDelay)
+        if (!mouseDownOverBrain && (Time.realtimeSinceStartup - lastInteractionTime) > noInteractionDelay && !SceneController.IsEarth)
             autoRotate = true;
 
         blockBrainControl = false;
     }
 
-    private float SpeedMultiplier()
-    {
-        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
-            return shiftMult;
-        else if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
-            return ctrlMult;
-        else
-            return 1f;
-    }
     void BrainCameraControl_noTarget()
     {
         if (Input.GetMouseButtonUp(0))
@@ -169,8 +160,8 @@ public class CameraRotatorBehavior : MonoBehaviour
             // If the mouse is down, even if we are far way now we should drag the brain
             if (mouseButtonDown == 0)
             {
-                float xRot = Input.GetAxis("Mouse X") * rotSpeed * SpeedMultiplier() * Time.deltaTime;
-                float yRot = Input.GetAxis("Mouse Y") * rotSpeed * SpeedMultiplier() * Time.deltaTime;
+                float xRot = Input.GetAxis("Mouse X") * rotSpeed * rotSpeedReduction() * Time.deltaTime;
+                float yRot = Input.GetAxis("Mouse Y") * rotSpeed * rotSpeedReduction() * Time.deltaTime;
 
                 if (xRot != 0 || yRot != 0)
                 {
@@ -194,6 +185,18 @@ public class CameraRotatorBehavior : MonoBehaviour
                 }
             }
         }
+    }
+
+    /// <summary>
+    /// When zoomed in, reduce the rotation speed
+    /// </summary>
+    /// <returns></returns>
+    private float rotSpeedReduction()
+    {
+        if (brainCamera.fieldOfView < 50)
+            return 1 - ((50f-brainCamera.fieldOfView)/50f) * 0.5f;
+        else
+            return 1f;
     }
 
     void ApplyBrainCameraPositionAndRotation()

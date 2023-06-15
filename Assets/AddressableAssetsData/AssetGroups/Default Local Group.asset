@@ -130,7 +130,7 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 4222b1be076143944a9e43eed8a21e5b
-    m_Address: Assets/AddressableAssets/images/bears_reach.JPG
+    m_Address: Assets/AddressableAssets/images/bears_reach.jpg
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: b8454bb90504b5f40872017cb1219f28
@@ -330,7 +330,7 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 21ae104468bccf14bbbcebf556175af3
-    m_Address: Assets/AddressableAssets/images/caveroute.JPG
+    m_Address: Assets/AddressableAssets/images/caveroute.jpg
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: a4888b92bfb22554fb37d68ea4b2bada
@@ -370,7 +370,7 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 87ef8aad897864240995f9a031b4400e
-    m_Address: Assets/AddressableAssets/images/craven_allison.JPG
+    m_Address: Assets/AddressableAssets/images/craven_allison.jpg
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 47e253ae1a0f8434395c2a21c49a64d4
@@ -478,7 +478,7 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: af83051a4efed0146847825c60cecad8
-    m_Address: Assets/AddressableAssets/images/pagoda.JPG
+    m_Address: Assets/AddressableAssets/images/pagoda.jpg
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: ccd337e82e5a70049b42138926f6ea0b
@@ -527,6 +527,14 @@ MonoBehaviour:
     m_SerializedLabels: []
   - m_GUID: fe291fffbbf2f834fb076ded04466eda
     m_Address: Assets/AddressableAssets/earth/Earth_night_cloud.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1735a2bd3277b0f4a82ab58b648a3cf2
+    m_Address: Assets/AddressableAssets/images/rainier_muir_23.jpg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4124fae1959d9ad46ba3e3e03da41c28
+    m_Address: Assets/AddressableAssets/images/slot_couloir.jpg
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0

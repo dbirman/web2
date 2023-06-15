@@ -11,6 +11,7 @@ public class SceneController : MonoBehaviour
     [SerializeField] GameObject _earthGO;
 
     [SerializeField] Camera _mainCamera;
+    public static bool IsEarth;
 
 #if UNITY_EDITOR
     private void Awake()
@@ -21,12 +22,15 @@ public class SceneController : MonoBehaviour
 
     public void ChangeScene(int earth)
     {
-        _earthGO.SetActive(earth == 1);
-        _brainCardsGO.SetActive(earth != 1);
+        IsEarth = earth == 1;
+
+        _earthGO.SetActive(IsEarth);
+        _brainCardsGO.SetActive(!IsEarth);
+
 
         Vector3 pos = _mainCamera.transform.localPosition;
 
-        pos.x = earth == 1 ? 40f : 0f;
+        pos.x = IsEarth ? 40f : 0f;
 
         _mainCamera.transform.localPosition = pos;
 
