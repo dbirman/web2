@@ -59,3 +59,5 @@ sysinfo.txt
 crashlytics-build.properties
 Assets/TextMesh Pro/*
 Assets/EarthRendering Free/*
+.DS_Store
+Assets/.DS_Store
