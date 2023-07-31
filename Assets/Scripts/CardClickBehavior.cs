@@ -21,12 +21,8 @@ public class CardClickBehavior : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-#if UNITY_WEBGL && !UNITY_EDITOR
-            OpenModal(_modalIdx);
-#endif
-#if UNITY_EDITOR
-            Debug.Log($"Clicked modal {_modalIdx}");
-#endif
+            ModalManager.ShowModal(_modalIdx);
+
             camRotatorBehav.SetControlBlock(true);
         }
     }

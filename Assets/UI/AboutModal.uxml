@@ -1,0 +1,18 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Modal.uss?fileID=7433441132597879392&amp;guid=c88e2496e138ba048a8d8de1fd7b3584&amp;type=3#Modal" />
+    <ui:ScrollView horizontal-scroller-visibility="Hidden" mouse-wheel-scroll-size="8" style="flex-grow: 1; transition-property: display; transition-duration: 0.5s; transition-timing-function: ease-in-out; display: flex;">
+        <ui:VisualElement name="about-modal" class="modal" style="height: 857px;">
+            <ui:VisualElement name="about-header" class="modal-header" />
+            <ui:Label tabindex="-1" text="Hi! I&apos;m Dan, and I lead the &lt;a href=&quot;https://virtualbrainlab.org/&quot;&gt;Virtual Brain Lab&lt;/a&gt;&lt;/color&gt; project creating intuitive and interactive 3D visualizations of neuroscience data." display-tooltip-when-elided="true" name="about-title" class="modal-title" />
+            <ui:Label tabindex="-1" text="I&apos;m on the job market this fall, looking to launch a research group developing data visualizations, virtual reality psychophysics, and open-source tool development. Reach out if you have a position that might be a good fit!" display-tooltip-when-elided="true" name="about-job" class="modal-paragraph" style="margin-left: 10px;" />
+            <ui:Label tabindex="-1" text="Right now, I am a Washington Research Foundation Postdoctoral Fellow in the lab of &lt;a href=&quot;http://www.steinmetzlab.net&quot;&gt;Nick Steinmetz&lt;/a&gt; at &lt;color=#4b2e83&gt;University of Washington&lt;/color&gt;." display-tooltip-when-elided="true" name="about-self" class="modal-paragraph" style="margin-left: 10px;" />
+            <ui:VisualElement name="about-logos" style="flex-grow: 1; min-height: auto; width: 80%; flex-direction: row;">
+                <ui:VisualElement name="logo-uw" class="logo" />
+                <ui:VisualElement name="logo-stanford" class="logo" style="background-image: url(&apos;project://database/Assets/Images/Logos/Stanford.png?fileID=2800000&amp;guid=4b07179942ab8e04b881986f557ee3c1&amp;type=3#Stanford&apos;); left: 25%;" />
+                <ui:VisualElement name="logo-bccn" class="logo" style="background-image: url(&apos;project://database/Assets/Images/Logos/BCCN.png?fileID=2800000&amp;guid=0da2f8a8ed8c06b4d9aac0d705a6f9eb&amp;type=3#BCCN&apos;); left: 50%;" />
+                <ui:VisualElement name="logo-cornell" class="logo" style="background-image: url(&apos;project://database/Assets/Images/Logos/Cornell.png?fileID=2800000&amp;guid=5fad7bd30ecea5840b719dff2dc4295b&amp;type=3#Cornell&apos;); left: 75%;" />
+            </ui:VisualElement>
+            <ui:Button text="X" display-tooltip-when-elided="true" name="exit-button" class="exit-button" />
+        </ui:VisualElement>
+    </ui:ScrollView>
+</ui:UXML>

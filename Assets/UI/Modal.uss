@@ -1,0 +1,124 @@
+.modal {
+    flex-grow: 1;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 80%;
+    height: auto;
+    align-self: center;
+    min-height: auto;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    flex-wrap: nowrap;
+}
+
+.modal-header {
+    flex-grow: 1;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url('project://database/Assets/Images/Dans/dans.png?fileID=21300000&guid=7961b6b2f663ad94fb76a017eea9bbb5&type=3#dans');
+    -unity-background-scale-mode: scale-to-fit;
+    align-self: center;
+    width: 100%;
+    height: auto;
+    max-height: 40%;
+    min-height: 20%;
+}
+
+.modal-title {
+    -unity-text-align: upper-center;
+    white-space: normal;
+    font-size: 150%;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.modal-title-left {
+    -unity-text-align: upper-left;
+    white-space: normal;
+    font-size: 100%;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    align-self: flex-start;
+    -unity-font-style: bold;
+}
+
+.modal-paragraph {
+    -unity-text-align: upper-center;
+    width: auto;
+    white-space: normal;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 100%;
+}
+
+.modal-paragraph-left {
+    -unity-text-align: upper-left;
+    width: auto;
+    white-space: normal;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 100%;
+}
+
+.logo {
+    flex-grow: 1;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url('project://database/Assets/Images/Logos/UW.png?fileID=2800000&guid=ed2b392a7a0b84d408e9c461f103d7d9&type=3#UW');
+    width: 25%;
+    height: 100%;
+    -unity-background-scale-mode: scale-to-fit;
+    position: absolute;
+}
+
+.logo:hover {
+}
+
+.logo-text {
+    -unity-text-align: upper-center;
+    width: 25%;
+    font-size: 8px;
+    position: absolute;
+    justify-content: center;
+    margin-top: 0;
+    align-items: auto;
+    align-self: center;
+    height: auto;
+    color: rgb(27, 27, 27);
+}
+
+.logo-text:hover {
+}
+
+.exit-button {
+    position: absolute;
+    align-items: flex-end;
+    align-self: flex-end;
+    width: 25px;
+    height: 25px;
+    font-size: 24px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    flex-direction: row-reverse;
+    flex-grow: 0;
+    right: 0;
+    top: 0;
+}

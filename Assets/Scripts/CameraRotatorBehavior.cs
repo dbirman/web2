@@ -71,6 +71,8 @@ public class CameraRotatorBehavior : MonoBehaviour
     void Update()
     {
         // Check the scroll wheel and deal with the field of view
+        if (ModalManager.ModalOpen)
+            return;
 
         float scroll = -Input.GetAxis("Mouse ScrollWheel");
         brainCamera.fieldOfView += (brainCamera.orthographic ? orthoDelta : fovDelta) * scroll * rotSpeedReduction();
