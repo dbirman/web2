@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
-using UnityEngine.Rendering;
 
 public class SceneController : MonoBehaviour
 {
@@ -14,15 +11,18 @@ public class SceneController : MonoBehaviour
     public static bool IsEarth;
 
 #if UNITY_EDITOR
+    public bool LoadEarth;
+
     private void Awake()
     {
-        ChangeScene(1);
+        if (LoadEarth)
+            ChangeScene(true);
     }
 #endif
 
-    public void ChangeScene(int earth)
+    public void ChangeScene(bool earth)
     {
-        IsEarth = earth == 1;
+        IsEarth = earth;
 
         _earthGO.SetActive(IsEarth);
         _brainCardsGO.SetActive(!IsEarth);

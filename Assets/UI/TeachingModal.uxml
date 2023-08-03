@@ -1,6 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/Modal.uss?fileID=7433441132597879392&amp;guid=c88e2496e138ba048a8d8de1fd7b3584&amp;type=3#Modal" />
-    <ui:ScrollView horizontal-scroller-visibility="Hidden" mouse-wheel-scroll-size="400" class="modal-scroll" style="height: 2803px;">
+    <ui:ScrollView horizontal-scroller-visibility="Hidden" mouse-wheel-scroll-size="400" picking-mode="Ignore" class="modal-scroll" style="height: 2803px;">
         <ui:VisualElement name="teach-modal" class="modal" style="height: auto;">
             <ui:VisualElement name="teach-header" class="modal-header" style="background-image: url(&apos;project://database/Assets/Images/Dans/dan_teach.png?fileID=21300000&amp;guid=21084d752ca210148976e7e858bd6dc2&amp;type=3#dan_teach&apos;);" />
             <ui:Button text="X" display-tooltip-when-elided="true" name="exit-button" class="exit-button" />

@@ -14,6 +14,16 @@
     max-width: 800px;
 }
 
+.modal-scroll {
+    flex-grow: 1;
+    transition-property: display;
+    transition-duration: 0.5s;
+    transition-timing-function: ease-in-out;
+    display: flex;
+    width: 100%;
+    align-self: center;
+}
+
 .modal-header {
     flex-grow: 1;
     background-color: rgba(0, 0, 0, 0);

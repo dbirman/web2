@@ -1284,6 +1284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d473d759e34bb7408b0e8bdf6bf500b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sceneController: {fileID: 660224054}
   _modals:
   - {fileID: 1590559496}
   - {fileID: 1605670304}
@@ -7178,6 +7179,7 @@ MonoBehaviour:
   _brainCardsGO: {fileID: 1900871672}
   _earthGO: {fileID: 564163768}
   _mainCamera: {fileID: 330585545}
+  LoadEarth: 0
 --- !u!1 &664716894
 GameObject:
   m_ObjectHideFlags: 0
@@ -10079,7 +10081,7 @@ MonoBehaviour:
       - m_Target: {fileID: 660224054}
         m_TargetAssemblyTypeName: SceneController, Assembly-CSharp
         m_MethodName: ChangeScene
-        m_Mode: 3
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
