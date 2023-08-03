@@ -1,0 +1,95 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Modal.uss?fileID=7433441132597879392&amp;guid=c88e2496e138ba048a8d8de1fd7b3584&amp;type=3#Modal" />
+    <ui:ScrollView horizontal-scroller-visibility="Hidden" mouse-wheel-scroll-size="400" class="modal-scroll" style="height: 2803px;">
+        <ui:VisualElement name="teach-modal" class="modal" style="height: auto;">
+            <ui:VisualElement name="teach-header" class="modal-header" style="background-image: url(&apos;project://database/Assets/Images/Dans/dan_teach.png?fileID=21300000&amp;guid=21084d752ca210148976e7e858bd6dc2&amp;type=3#dan_teach&apos;);" />
+            <ui:Button text="X" display-tooltip-when-elided="true" name="exit-button" class="exit-button" />
+            <ui:Label tabindex="-1" text="I have acted as the primary mentor for five undergraduate students and one masters student.&#10;&#10;Throughout my career I have taught over two dozen classes. These have included both introductory and upper-level neuroscience courses for undergraduates and graduate students. Among the highlights have been teaching a course I co-designed from scratch &quot;Vertical Neuroscience&quot; using rock climbing to introduce concepts in sensory and motor neuroscience, as well as leading a team of graduate and undergraduate teaching assistants for a 250-student introductory neuroscience class." display-tooltip-when-elided="true" name="teach-intro" class="modal-paragraph" />
+            <ui:Label tabindex="-1" text="Vertical Neuroscience" display-tooltip-when-elided="true" name="teach-vertneuro-header" class="modal-title" />
+            <ui:Label tabindex="-1" text="Watch a &lt;a href=&quot;https://www.youtube.com/watch?v=--sBEWfPfKA&quot;&gt;video&lt;/a&gt; about my course, Vertical Neuroscience, which blends motor systems neuroscience and practical experiences in the climbing gym." display-tooltip-when-elided="true" name="teach-intro" class="modal-paragraph" />
+            <ui:Label tabindex="-1" text="Mentoring" display-tooltip-when-elided="true" name="mentor-header" class="modal-title" />
+            <ui:VisualElement name="mentor" class="science-project" style="flex-wrap: nowrap; align-items: stretch; justify-content: flex-start;">
+                <ui:Label tabindex="-1" text="University of Washington" display-tooltip-when-elided="true" name="mentor-uw" class="modal-title-left" />
+                <ui:VisualElement name="teach-block" class="teach-block" style="align-items: flex-start;">
+                    <ui:Label tabindex="-1" text="Selina Li&#10;&lt;i&gt;3D reconstruction of 2-photon and widefield calcium imaging data acquired in two dimensional videos&lt;/i&gt;" display-tooltip-when-elided="true" name="left-label" class="label-text" />
+                    <ui:Label tabindex="-1" text="2023-" display-tooltip-when-elided="true" name="right-label" class="label-text" style="align-self: flex-start;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="teach-block" class="teach-block" style="align-items: flex-start;">
+                    <ui:Label tabindex="-1" text="Jasmine Schoch (Shenoy Undergraduate Research Fellow)&#10;&lt;i&gt;Developing exploratory interactive 3D education tools for neuroscience&lt;/i&gt;" display-tooltip-when-elided="true" name="left-label" class="label-text" />
+                    <ui:Label tabindex="-1" text="2022-" display-tooltip-when-elided="true" name="right-label" class="label-text" style="align-self: flex-start;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="teach-block" class="teach-block" style="align-items: flex-start;">
+                    <ui:Label tabindex="-1" text="Kenneth Yang (Mary Gates Research Scholar)&#10;&lt;i&gt;Automating multi-probe insertions to improve the efficiency and reproducibility of electrophysiology experiments&lt;/i&gt;" display-tooltip-when-elided="true" name="left-label" class="label-text" />
+                    <ui:Label tabindex="-1" text="2022-" display-tooltip-when-elided="true" name="right-label" class="label-text" style="align-self: flex-start;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="teach-block" class="teach-block" style="align-items: flex-start;">
+                    <ui:Label tabindex="-1" text="Kai Nylund (Mary Gates Research Scholar)&#10;&lt;i&gt;Designing 3D interactive neuroscience visualizations&lt;/i&gt;" display-tooltip-when-elided="true" name="left-label" class="label-text" />
+                    <ui:Label tabindex="-1" text="2021-2022" display-tooltip-when-elided="true" name="right-label" class="label-text" style="align-self: flex-start;" />
+                </ui:VisualElement>
+                <ui:Label tabindex="-1" text="Stanford University" display-tooltip-when-elided="true" name="mentor-stanford" class="modal-title-left" />
+                <ui:VisualElement name="teach-block" class="teach-block" style="align-items: flex-start;">
+                    <ui:Label tabindex="-1" text="Kai Fox&#10;&lt;i&gt;Gain, not concomitant changes in spatial receptive field properties, improves task performance in a neural network attention model&lt;/i&gt;" display-tooltip-when-elided="true" name="left-label" class="label-text" />
+                    <ui:Label tabindex="-1" text="2018-2022" display-tooltip-when-elided="true" name="right-label" class="label-text" style="align-self: flex-start;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="teach-block" class="teach-block" style="align-items: flex-start;">
+                    <ui:Label tabindex="-1" text="Aarush Selvan&#10;&lt;i&gt;An analysis of human and monkey task learning dynamics&lt;/i&gt;" display-tooltip-when-elided="true" name="left-label" class="label-text" />
+                    <ui:Label tabindex="-1" text="2017-2018" display-tooltip-when-elided="true" name="right-label" class="label-text" style="align-self: flex-start;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:Label tabindex="-1" text="Teaching" display-tooltip-when-elided="true" name="teach-header" class="modal-title" />
+            <ui:VisualElement name="teach" class="science-project" style="flex-wrap: nowrap; align-items: stretch; justify-content: flex-start;">
+                <ui:Label tabindex="-1" text="Cognitive neuroscience" display-tooltip-when-elided="true" name="teach-cogneuro" class="modal-title-left" />
+                <ui:VisualElement name="teach-block" class="teach-block" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row; align-self: auto; align-items: center; justify-content: space-between;">
+                    <ui:Label tabindex="-1" text="Brain Machine Interface Seminar (NEUSCI 450)&#10;&lt;i&gt;Instructor: Daniel Birman&lt;/i&gt;" display-tooltip-when-elided="true" name="left-label" class="label-text" />
+                    <ui:Label tabindex="-1" text="Fall 2020" display-tooltip-when-elided="true" name="right-label" class="label-text" style="align-self: flex-start;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="teach-block" class="teach-block" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row; align-self: auto; align-items: center; justify-content: space-between;">
+                    <ui:Label tabindex="-1" text="Vertical Neuroscience (PSYCH 149s)&#10;&lt;i&gt;Instructors: Daniel Birman, Corey Fernandez&lt;/i&gt;" display-tooltip-when-elided="true" name="left-label" class="label-text" />
+                    <ui:Label tabindex="-1" text="Summer 2019&#10;" display-tooltip-when-elided="true" name="right-label" class="label-text" style="align-self: flex-start;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="teach-block" class="teach-block" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row; align-self: auto; align-items: center; justify-content: space-between;">
+                    <ui:Label tabindex="-1" text="Introduction to cognitive neuroscience (PSYCH 50)&#10;&lt;i&gt;Instructor: Justin Gardner, Head TA: Daniel Birman&lt;/i&gt;&#10;&#10;&lt;i&gt;2019 TAs: Akshay Jagadeesh, Minyoung Lee, Jon Walters, Ian Eisenberg, Josiah Leong, Kawena Hirayama, Undergraduate TAs: Megumi Sano, Graham Todd, Greg Weaver, Vinh Ton, Kendall Costello, Michael Ko&#10;2018 TAs: Akshay Jagadeesh, Minyoung Lee, Guillaume Riesen, Jon Walters; Undergraduate TAs: Emma Master, Stephanie Zhang, Kawena Hirayama, Henry Ingram, Storm Foley&#10;2017 TAs: Minyoung Lee, Lior Bugatus, Zeynep Enkavi, Mona Rosenke, Guillaume Riesen&#10;2016 TAs: Anna Khazenzon, Natalia Velez, Anthony Stigliani, Rosemary Le&lt;i&gt;" display-tooltip-when-elided="true" name="left-label" class="label-text" style="height: auto; flex-wrap: nowrap; width: auto; white-space: normal; align-items: flex-start; align-self: flex-start; flex-shrink: 1;" />
+                    <ui:Label tabindex="-1" text="Winter 2019, Winter 2018&#10;Winter 2017, Winter 2016" display-tooltip-when-elided="true" name="right-label" class="label-text" style="align-self: flex-start;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="teach-block" class="teach-block" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row; align-self: auto; align-items: center; justify-content: space-between;">
+                    <ui:Label tabindex="-1" text="Cognitive neuroscience - first year seminar for neuroscience graduate students (NEPR 207) &#10;&lt;i&gt;Instructors: Russ Poldrack, Justin Gardner, TA: Daniel Birman&lt;/i&gt;" display-tooltip-when-elided="true" name="left-label" class="label-text" />
+                    <ui:Label tabindex="-1" text="Spring 2018, Spring 2017&#10;Spring 2016" display-tooltip-when-elided="true" name="right-label" class="label-text" style="align-self: flex-start;" />
+                </ui:VisualElement>
+                <ui:Label tabindex="-1" text="Statistics" display-tooltip-when-elided="true" name="teach-stats" class="modal-title-left" />
+                <ui:VisualElement name="teach-block" class="teach-block" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row; align-self: auto; align-items: center; justify-content: space-between;">
+                    <ui:Label tabindex="-1" text="Methods for behavioral and social sciences (PSYCH 252)&#10;&lt;i&gt;Instructors: Ewart Thomas, Benoit Monin&#10;TAs: Daniel Birman, Stephanie Gagnon, Robert Hawkins&lt;/i&gt;" display-tooltip-when-elided="true" name="left-label" class="label-text" />
+                    <ui:Label tabindex="-1" text="Fall 2016" display-tooltip-when-elided="true" name="right-label" class="label-text" style="align-self: flex-start;" />
+                </ui:VisualElement>
+                <ui:Label tabindex="-1" text="Outdoor education" display-tooltip-when-elided="true" name="teach-out" class="modal-title-left" />
+                <ui:VisualElement name="teach-block" class="teach-block" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row; align-self: auto; align-items: center; justify-content: space-between;">
+                    <ui:Label tabindex="-1" text="Vertical rescue " display-tooltip-when-elided="true" name="left-label" class="label-text label-text-small" style="height: 20px;" />
+                    <ui:Label tabindex="-1" text="Winter 2019, Spring 2018, Winter 2018, Spring 2012, Spring 2011" display-tooltip-when-elided="true" name="right-label" class="label-text label-text-small" style="align-self: flex-start; height: 20px;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="teach-block" class="teach-block" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row; align-self: auto; align-items: center; justify-content: space-between;">
+                    <ui:Label tabindex="-1" text="Belaying from above and rappelling clinic " display-tooltip-when-elided="true" name="left-label" class="label-text label-text-small" />
+                    <ui:Label tabindex="-1" text="Winter 2019, Fall 2018" display-tooltip-when-elided="true" name="right-label" class="label-text label-text-small" style="align-self: flex-start;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="teach-block" class="teach-block" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row; align-self: auto; align-items: center; justify-content: space-between;">
+                    <ui:Label tabindex="-1" text="Sport leading clinic " display-tooltip-when-elided="true" name="left-label" class="label-text label-text-small" />
+                    <ui:Label tabindex="-1" text="Winter 2019, Fall 2018, Spring 2018, Winter 2018" display-tooltip-when-elided="true" name="right-label" class="label-text label-text-small" style="align-self: flex-start;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="teach-block" class="teach-block" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row; align-self: auto; align-items: center; justify-content: space-between;">
+                    <ui:Label tabindex="-1" text="Crack climbing clinic " display-tooltip-when-elided="true" name="left-label" class="label-text label-text-small" />
+                    <ui:Label tabindex="-1" text="Fall 2017" display-tooltip-when-elided="true" name="right-label" class="label-text label-text-small" style="align-self: flex-start;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="teach-block" class="teach-block" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row; align-self: auto; align-items: center; justify-content: space-between;">
+                    <ui:Label tabindex="-1" text="Winter camping " display-tooltip-when-elided="true" name="left-label" class="label-text label-text-small" />
+                    <ui:Label tabindex="-1" text="Spring 2012, 2011, 2010" display-tooltip-when-elided="true" name="right-label" class="label-text label-text-small" style="align-self: flex-start;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="teach-block" class="teach-block" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row; align-self: auto; align-items: center; justify-content: space-between;">
+                    <ui:Label tabindex="-1" text="Multipitch climbing: Red Rock " display-tooltip-when-elided="true" name="left-label" class="label-text label-text-small" />
+                    <ui:Label tabindex="-1" text="Spring 2012" display-tooltip-when-elided="true" name="right-label" class="label-text label-text-small" style="align-self: flex-start;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="teach-block" class="teach-block" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row; align-self: auto; align-items: center; justify-content: space-between;">
+                    <ui:Label tabindex="-1" text="Multipitch climbing: Shawangunks " display-tooltip-when-elided="true" name="left-label" class="label-text label-text-small" />
+                    <ui:Label tabindex="-1" text="Fall 2011" display-tooltip-when-elided="true" name="right-label" class="label-text label-text-small" style="align-self: flex-start;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:ScrollView>
+</ui:UXML>

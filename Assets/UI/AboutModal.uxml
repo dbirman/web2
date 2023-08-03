@@ -1,7 +1,7 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/Modal.uss?fileID=7433441132597879392&amp;guid=c88e2496e138ba048a8d8de1fd7b3584&amp;type=3#Modal" />
-    <ui:ScrollView horizontal-scroller-visibility="Hidden" mouse-wheel-scroll-size="8" style="flex-grow: 1; transition-property: display; transition-duration: 0.5s; transition-timing-function: ease-in-out; display: flex;">
-        <ui:VisualElement name="about-modal" class="modal" style="height: 857px;">
+    <ui:ScrollView horizontal-scroller-visibility="Hidden" mouse-wheel-scroll-size="400" style="flex-grow: 1; transition-property: display; transition-duration: 0.5s; transition-timing-function: ease-in-out; display: flex;">
+        <ui:VisualElement name="about-modal" class="modal">
             <ui:VisualElement name="about-header" class="modal-header" />
             <ui:Label tabindex="-1" text="Hi! I&apos;m Dan, and I lead the &lt;a href=&quot;https://virtualbrainlab.org/&quot;&gt;Virtual Brain Lab&lt;/a&gt;&lt;/color&gt; project creating intuitive and interactive 3D visualizations of neuroscience data." display-tooltip-when-elided="true" name="about-title" class="modal-title" />
             <ui:Label tabindex="-1" text="I&apos;m on the job market this fall, looking to launch a research group developing data visualizations, virtual reality psychophysics, and open-source tool development. Reach out if you have a position that might be a good fit!" display-tooltip-when-elided="true" name="about-job" class="modal-paragraph" style="margin-left: 10px;" />

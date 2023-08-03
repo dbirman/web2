@@ -11,6 +11,7 @@
     margin-top: 100px;
     margin-bottom: 100px;
     flex-wrap: nowrap;
+    max-width: 800px;
 }
 
 .modal-header {
@@ -20,9 +21,9 @@
     -unity-background-scale-mode: scale-to-fit;
     align-self: center;
     width: 100%;
-    height: auto;
-    max-height: 40%;
-    min-height: 20%;
+    height: 250px;
+    max-height: 20%;
+    min-height: 10%;
 }
 
 .modal-title {
@@ -74,12 +75,14 @@
     background-color: rgba(0, 0, 0, 0);
     background-image: url('project://database/Assets/Images/Logos/UW.png?fileID=2800000&guid=ed2b392a7a0b84d408e9c461f103d7d9&type=3#UW');
     width: 25%;
-    height: 100%;
+    height: 100px;
     -unity-background-scale-mode: scale-to-fit;
     position: absolute;
+    flex-shrink: 0;
 }
 
 .logo:hover {
+    -unity-background-image-tint-color: rgba(255, 255, 255, 0.08);
 }
 
 .logo-text {
@@ -121,4 +124,97 @@
     flex-grow: 0;
     right: 0;
     top: 0;
+}
+
+.science-project {
+    flex-grow: 1;
+    background-color: rgba(0, 0, 0, 0);
+    width: 100%;
+    height: auto;
+}
+
+.science-paper {
+    flex-grow: 1;
+    background-color: rgba(0, 0, 0, 0);
+    flex-direction: row;
+    height: auto;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: center;
+}
+
+.science-paper-citation {
+    width: 75%;
+    white-space: normal;
+    align-self: flex-start;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: auto;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: auto;
+    min-height: auto;
+}
+
+.science-paper-pdf {
+    background-image: url('project://database/Assets/Images/Icons/pdf-icon.png?fileID=2800000&guid=8b9b99e89e1963f4da7dce8bf50cf5e4&type=3#pdf-icon');
+    width: 50px;
+    height: 100px;
+    -unity-background-scale-mode: scale-to-fit;
+    border-left-color: rgba(255, 255, 255, 0);
+    border-right-color: rgba(255, 255, 255, 0);
+    border-top-color: rgba(255, 255, 255, 0);
+    border-bottom-color: rgba(255, 255, 255, 0);
+    margin-left: 20px;
+    margin-right: 10px;
+    background-color: rgba(0, 0, 0, 0);
+    margin-bottom: 10px;
+    margin-top: -10px;
+}
+
+.science-paper-pdf:hover {
+    cursor: url('project://database/Assets/UnityDefaultRuntimeTheme.tss?fileID=4561253339802451974&guid=22f0c52e50480f540ab4f12cdad0e51c&type=3#Font Texture');
+}
+
+.teach-block {
+    flex-grow: 1;
+    background-color: rgba(0, 0, 0, 0);
+    flex-direction: row;
+    align-self: auto;
+    align-items: stretch;
+    justify-content: space-between;
+    height: auto;
+    width: 100%;
+    flex-wrap: nowrap;
+    margin-top: 5px;
+}
+
+.label-text {
+    align-self: flex-start;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    font-size: 10px;
+    color: rgb(94, 94, 94);
+    height: 40px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.label-text-small {
+    align-self: flex-start;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    font-size: 10px;
+    color: rgb(94, 94, 94);
+    height: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
