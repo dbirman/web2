@@ -27,7 +27,7 @@
 .modal-header {
     flex-grow: 1;
     background-color: rgba(0, 0, 0, 0);
-    background-image: url('project://database/Assets/Images/Dans/dans.png?fileID=21300000&guid=7961b6b2f663ad94fb76a017eea9bbb5&type=3#dans');
+    background-image: url("project://database/Assets/Images/Dans/dans.png?fileID=21300000&guid=7961b6b2f663ad94fb76a017eea9bbb5&type=3#dans");
     -unity-background-scale-mode: scale-to-fit;
     align-self: center;
     width: 100%;
@@ -83,8 +83,8 @@
 .logo {
     flex-grow: 1;
     background-color: rgba(0, 0, 0, 0);
-    background-image: url('project://database/Assets/Images/Logos/UW.png?fileID=2800000&guid=ed2b392a7a0b84d408e9c461f103d7d9&type=3#UW');
-    width: 25%;
+    background-image: url("project://database/Assets/Images/Logos/UW.png?fileID=2800000&guid=ed2b392a7a0b84d408e9c461f103d7d9&type=3#UW");
+    width: 20%;
     height: 100px;
     -unity-background-scale-mode: scale-to-fit;
     position: absolute;
@@ -173,7 +173,7 @@
 }
 
 .science-paper-pdf {
-    background-image: url('project://database/Assets/Images/Icons/pdf-icon.png?fileID=2800000&guid=8b9b99e89e1963f4da7dce8bf50cf5e4&type=3#pdf-icon');
+    background-image: url("project://database/Assets/Images/Icons/pdf-icon.png?fileID=2800000&guid=8b9b99e89e1963f4da7dce8bf50cf5e4&type=3#pdf-icon");
     width: 50px;
     height: 100px;
     -unity-background-scale-mode: scale-to-fit;
