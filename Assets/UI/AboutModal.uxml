@@ -4,7 +4,7 @@
         <ui:VisualElement name="about-modal" class="modal">
             <ui:VisualElement name="about-header" class="modal-header" />
             <ui:Label tabindex="-1" text="Hi! I&apos;m Dan, I create intuitive and interactive 3D visualizations of neuroscience data." display-tooltip-when-elided="true" name="about-title" class="modal-title" />
-            <ui:Label tabindex="-1" text="Right now, I am a Software Engineer at the &lt;a style=&quot;color:#2A7DE1&quot; href=&quot;https://allenneuraldynamics.org/&quot;&gt;Allen Institute for Neural Dynamics&lt;/a&gt; as well as the lead developer of the &lt;a href=&quot;https://virtualbrainlab.org/&quot;&gt;Virtual Brain Lab&lt;/a&gt;." display-tooltip-when-elided="true" name="about-self" class="modal-paragraph" style="margin-left: 10px;" />
+            <ui:Label tabindex="-1" text="Right now, I am a Software Engineer at the &lt;a style=&quot;color:#2A7DE1&quot; href=&quot;https://allenneuraldynamics.org/&quot;&gt;Allen Institute for Neural Dynamics&lt;/a&gt; as well as the lead developer of the &lt;a href=&quot;https://virtualbrainlab.org/&quot;&gt;Virtual Brain Lab&lt;/a&gt;.&#10;&#10;You can reach me at danbirman@gmail.com" display-tooltip-when-elided="true" name="about-self" class="modal-paragraph" style="margin-left: 10px;" />
             <ui:VisualElement name="about-logos" style="flex-grow: 1; min-height: auto; width: 80%; flex-direction: row;">
                 <ui:VisualElement name="logo-uw" class="logo" style="top: -1px; left: -2px; background-image: url(&quot;project://database/Assets/Images/Logos/aind.png?fileID=2800000&amp;guid=c2c8808524f2819409629bdfd677a795&amp;type=3#aind&quot;);" />
                 <ui:VisualElement name="logo-uw" class="logo" style="left: 20%;" />
