@@ -242,25 +242,73 @@ function buildEarth(texture, rows) {
   );
   earthGroup.add(globe);
 
-  const pinGeo = new THREE.SphereGeometry(0.014, 10, 10);
-  const R = 1.008;
+  // Pre-compute unit-sphere normals for all valid rows so we can detect
+  // overlap and lean flags apart before building any geometry.
+  const entries = [];
   rows.forEach((row) => {
     const lat = parseFloat(row.lat);
     const lon = parseFloat(row.lon);
     if (Number.isNaN(lat) || Number.isNaN(lon)) return;
-    const phi = (90 - lat) * DEG;
+    const phi   = (90 - lat) * DEG;
     const theta = (lon + 180) * DEG;
-    const pos = new THREE.Vector3(
-      -R * Math.sin(phi) * Math.cos(theta),
-      R * Math.cos(phi),
-      R * Math.sin(phi) * Math.sin(theta),
+    const normal = new THREE.Vector3(
+      -Math.sin(phi) * Math.cos(theta),
+       Math.cos(phi),
+       Math.sin(phi) * Math.sin(theta),
     );
-    const mat = new THREE.MeshBasicMaterial({ color: 0xffffff });
-    const pin = new THREE.Mesh(pinGeo, mat);
-    pin.position.copy(pos);
-    pin.userData = { row, mat };
-    earthGroup.add(pin);
-    pinMeshes.push(pin);
+    entries.push({ row, normal });
+  });
+
+  // Shared flag geometry — one stick (cylinder base at y=0, tip at y=STICK_H)
+  // and one rectangle that hangs from the tip, pivoted at its left edge.
+  const STICK_H = 0.052;
+  const FLAG_W  = 0.022;
+  const FLAG_H  = 0.013;
+  const stickGeo = new THREE.CylinderGeometry(0.0015, 0.0015, STICK_H, 6);
+  stickGeo.translate(0, STICK_H / 2, 0);
+  const flagGeo = new THREE.PlaneGeometry(FLAG_W, FLAG_H);
+  flagGeo.translate(FLAG_W / 2, 0, 0);
+
+  const stickMat  = new THREE.MeshBasicMaterial({ color: 0x999999 });
+  const worldUp   = new THREE.Vector3(0, 1, 0);
+  const LEAN_BASE   = 16 * DEG; // northward lean angle
+  const LEAN_JITTER =  8 * DEG; // ±random variation
+
+  entries.forEach(({ row, normal }) => {
+    // Slightly off-white flag colour with a subtle random hue tint
+    const baseColor = new THREE.Color().setHSL(
+      Math.random(),
+      0.05 + Math.random() * 0.08,
+      0.87 + Math.random() * 0.10,
+    );
+    const flagMat = new THREE.MeshBasicMaterial({ color: baseColor.clone(), side: THREE.DoubleSide });
+
+    const flagRect = new THREE.Mesh(flagGeo, flagMat);
+    flagRect.position.y = STICK_H;
+
+    const flagGroup = new THREE.Group();
+    flagGroup.add(new THREE.Mesh(stickGeo, stickMat), flagRect);
+
+    // Build an explicit basis so the flag hangs east or west (randomly) from
+    // the stick, which itself points along the outward surface normal.
+    const northTangent = worldUp.clone().addScaledVector(normal, -worldUp.dot(normal)).normalize();
+    const eastTangent  = new THREE.Vector3().crossVectors(northTangent, normal);
+    const faceSign     = Math.random() < 0.5 ? 1 : -1;
+    const bX = eastTangent.clone().multiplyScalar(faceSign);
+    const bZ = new THREE.Vector3().crossVectors(bX, normal);
+    flagGroup.quaternion.setFromRotationMatrix(new THREE.Matrix4().makeBasis(bX, normal, bZ));
+
+    // Lean stick northward with a little random jitter
+    const leanAngle = LEAN_BASE + (Math.random() - 0.5) * 2 * LEAN_JITTER;
+    const leanAxis  = new THREE.Vector3().crossVectors(normal, northTangent).normalize();
+    flagGroup.quaternion.premultiply(
+      new THREE.Quaternion().setFromAxisAngle(leanAxis, leanAngle),
+    );
+
+    flagGroup.position.copy(normal); // radius 1.0 — base sits on the sphere
+    flagGroup.userData = { row, mat: flagMat, baseColor };
+    earthGroup.add(flagGroup);
+    pinMeshes.push(flagGroup);
   });
 
   earthRot = new Rotator(earthGroup, { autoSpin: 0.06, base: new THREE.Euler(0, 2.1, 0) });
@@ -275,6 +323,7 @@ let moved = false;
 let downPos = null;
 let lastInteraction = 0;
 let editMode = false; // true while the ?edit card-placement tool owns the scene
+let earthSpinDisabled = false; // permanently off once the user manually rotates the earth
 
 function setPointer(e) {
   const r = canvas.getBoundingClientRect();
@@ -313,8 +362,8 @@ canvas.addEventListener('wheel', (e) => {
 let pinScale = 1;
 function updatePinScale() {
   const t = THREE.MathUtils.clamp(camDist / ZOOM.earth.base, 0, 1);
-  pinScale = THREE.MathUtils.clamp(Math.pow(t, 2.2), 0.045, 1);
-  pinMeshes.forEach((p) => p.scale.setScalar(p === hoveredPin ? pinScale * 1.7 : pinScale));
+  pinScale = THREE.MathUtils.clamp(Math.pow(t, 2.2) * 1.4, 0.045, 1.4);
+  pinMeshes.forEach((p) => p.scale.setScalar(pinScale));
 }
 
 canvas.addEventListener('pointerdown', (e) => {
@@ -334,6 +383,7 @@ canvas.addEventListener('pointermove', (e) => {
     const dy = e.movementY || 0;
     if (Math.abs(e.clientX - downPos.x) + Math.abs(e.clientY - downPos.y) > 4) moved = true;
     const k = speedScale();
+    if (mode === 'earth') earthSpinDisabled = true;
     (mode === 'brain' ? brainRot : earthRot)?.drag(dx * k, dy * k);
     lastInteraction = performance.now();
   } else {
@@ -360,14 +410,13 @@ function hover() {
     if (hit) hit.object.scale.setScalar(hit.object.userData.baseScale * 1.12);
     canvas.classList.toggle('pointer', !!hit);
   } else {
-    const hit = raycaster.intersectObjects(pinMeshes, false)[0];
-    const pin = hit ? hit.object : null;
+    const hit = raycaster.intersectObjects(pinMeshes, true)[0];
+    const pin = hit ? hit.object.parent : null; // hit.object is a child mesh; parent is the flagGroup
     if (pin !== hoveredPin) {
-      if (hoveredPin) { hoveredPin.userData.mat.color.set(0xffffff); hoveredPin.scale.setScalar(pinScale); }
+      if (hoveredPin) { hoveredPin.userData.mat.color.copy(hoveredPin.userData.baseColor); }
       hoveredPin = pin;
       if (pin) {
         pin.userData.mat.color.set(0xb5544b);
-        pin.scale.setScalar(pinScale * 1.7);
         showViewer(pin.userData.row);
       }
     }
@@ -439,7 +488,7 @@ function animate() {
   const idle = !dragging && !anyModalOpen() && !editMode && performance.now() - lastInteraction > IDLE_MS;
   if (idle) {
     if (mode === 'brain') brainRot?.idleSpin(dt);
-    else if (!hoveredPin) earthRot?.idleSpin(dt);
+    else if (!hoveredPin && !earthSpinDisabled) earthRot?.idleSpin(dt);
   }
   renderer.render(scene, camera);
   requestAnimationFrame(animate);
