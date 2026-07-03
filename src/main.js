@@ -55,15 +55,18 @@ class Rotator {
     this.autoSpin = autoSpin;
     this.pitchLimit = pitchLimit;
     this.base = new THREE.Quaternion().setFromEuler(base);
+    // The object's own vertical axis, once tilted by `base` — yaw always spins
+    // around this fixed axis, not the world/global up axis.
+    this.localUp = new THREE.Vector3(0, 1, 0).applyQuaternion(this.base);
     this.yaw = 0;
     this.pitch = 0;
     this.enabled = true;
     this.apply();
   }
   apply() {
-    const qy = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 1, 0), this.yaw);
+    const qy = new THREE.Quaternion().setFromAxisAngle(this.localUp, this.yaw);
     const qx = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(1, 0, 0), this.pitch);
-    // yaw first (turntable), then pitch about camera-horizontal, then base tilt
+    // yaw around the object's own tilted vertical axis, then pitch relative to the camera.
     this.target.quaternion.copy(qx).multiply(qy).multiply(this.base);
   }
   drag(dx, dy) {
@@ -422,7 +425,7 @@ function toBrain() {
   backBtn.hidden = true;
   viewer.classList.remove('show');
   viewer.hidden = true;
-  hint.textContent = 'drag to rotate · click a photo';
+  hint.textContent = 'drag to rotate · click the dans';
   camDist = ZOOM.brain.base;
   applyZoom();
   lastInteraction = performance.now();

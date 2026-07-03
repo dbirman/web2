@@ -24,16 +24,14 @@ export const MODALS = {
     body: `
       <h1>Hi! I'm Dan &mdash; I build intuitive, interactive 3D visualizations of neuroscience data.</h1>
       <p>Right now I'm a Software Engineer at the
-        <a href="https://alleninstitute.org/division/neural-dynamics/" target="_blank" rel="noopener">Allen Institute for Neural Dynamics</a>,
-        and the lead developer of the
-        <a href="https://virtualbrainlab.org/" target="_blank" rel="noopener">Virtual Brain Lab</a>.</p>
+        <a href="https://www.allenneuraldynamics.org/" target="_blank" rel="noopener">Allen Institute for Neural Dynamics</a>.
       <div class="contact">
         <a href="mailto:danbirman@gmail.com">Email</a>
         <a href="https://github.com/dbirman/" target="_blank" rel="noopener">GitHub</a>
         <a href="https://scholar.google.com/citations?user=7EFz9rcAAAAJ&hl=en" target="_blank" rel="noopener">Publications</a>
       </div>
       <div class="logos">
-        <img src="logos/aind.png" alt="Allen Institute for Neural Dynamics" title="Allen Institute for Neural Dynamics — Software Engineer, 2023–present" />
+        <img src="logos/aind.png" alt="Allen Institute / Neural Dynamics" title="Allen Institute / Neural Dynamics — Software Engineer, 2023–present" />
         <img src="logos/UW.png" alt="University of Washington" title="University of Washington — Postdoc, 2020–2023" />
         <img src="logos/Stanford.png" alt="Stanford University" title="Stanford University — PhD Cognitive Neuroscience, 2014–2019" />
         <img src="logos/BCCN.png" alt="BCCN Berlin" title="BCCN Berlin — Research Assistant, 2012–2013" />
@@ -50,6 +48,15 @@ export const MODALS = {
       <p>I build intuitive, interactive 3D visualization tools for neuroscience. I've also studied
         visual attention using functional MRI, electrophysiology, and widefield calcium imaging, and
         contributed to a number of open-source software tools.</p>
+
+      <h2>Allen Institute</h2>
+      <h3>Data Portal</h3>
+      <p>Our main entrypoint for discovering data collected at the Neural Dynamics accelerator.</p>
+      <p><a href="https://data.allenneuraldynamics.org/search" target="_blank" rel="noopener">Data Portal website</a></p>
+
+      <h3>Biodata Schema</h3>
+      <p>Allen Institute metadata schema for neuroscience data assets.</p>
+      <p><a href="https://aind-data-schema.readthedocs.io/en/latest/" target="_blank" rel="noopener">biodata-schema documentation</a></p>
 
       <h2>Virtual Brain Lab</h2>
       <h3>Pinpoint: trajectory planning for multi-probe electrophysiology</h3>
@@ -130,6 +137,8 @@ export const MODALS = {
       <div class="entry"><span class="what">Aarush Selvan &mdash; <em>Human and monkey task-learning dynamics</em></span><span class="when">2017&ndash;2018</span></div>
 
       <h2>Teaching</h2>
+      <div class="entry"><span class="what">Summer Workshop for the Dynamic Brain &mdash; <em>Organizer</em></span><span class="when">Summer 2026</span></div>
+      <div class="entry"><span class="what">Summer Workshop for the Dynamic Brain &mdash; <em>Organizer</em></span><span class="when">Summer 2025</span></div>
       <div class="entry"><span class="what">Brain–Machine Interface Seminar (NEUSCI 450) &mdash; <em>Instructor</em></span><span class="when">Fall 2020</span></div>
       <div class="entry"><span class="what">Vertical Neuroscience (PSYCH 149s) &mdash; <em>Instructor, w/ Corey Fernandez</em></span><span class="when">Summer 2019</span></div>
       <div class="entry"><span class="what">Introduction to Cognitive Neuroscience (PSYCH 50) &mdash; <em>Head TA</em></span><span class="when">2016&ndash;2019</span></div>
