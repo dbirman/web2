@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>Dan Birman</title>
+    <meta name="description" content="Dan Birman — interactive & intuitive 3D visualizations of neuroscience data." />
+    <link rel="icon" href="./favicon.ico" />
+  </head>
+  <body>
+    <!-- 3D canvas host -->
+    <div id="scene"></div>
+
+    <!-- Overlay UI -->
+    <div id="ui">
+      <div id="hint" class="hint">drag to rotate</div>
+
+      <!-- Earth-scene chrome -->
+      <button id="back-btn" class="back-btn" hidden>&larr; back</button>
+      <figure id="viewer" class="viewer" hidden>
+        <img id="viewer-img" alt="" />
+        <figcaption id="viewer-cap"></figcaption>
+      </figure>
+    </div>
+
+    <!-- Loading cover -->
+    <div id="loader" class="loader">
+      <div class="loader-dot"></div>
+    </div>
+
+    <!-- Modal host (filled by JS) -->
+    <div id="modal-root"></div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
