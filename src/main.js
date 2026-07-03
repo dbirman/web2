@@ -20,7 +20,7 @@ host.appendChild(renderer.domElement);
 const canvas = renderer.domElement;
 
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 100);
+const camera = new THREE.PerspectiveCamera(50, 1, 0.02, 100);
 const BASE_DIST = 3.4;
 camera.position.set(0, 0, BASE_DIST);
 
@@ -282,7 +282,7 @@ function setPointer(e) {
 // --- zoom (dolly) ---
 const ZOOM = {
   brain: { min: 1.9, max: 6.0, base: BASE_DIST },
-  earth: { min: 1.06, max: 6.0, base: 3.0 },
+  earth: { min: 1.05, max: 6.0, base: 3.0 },
 };
 let camDist = BASE_DIST;
 function applyZoom() {
@@ -290,8 +290,11 @@ function applyZoom() {
   if (mode === 'earth') updatePinScale();
 }
 // Rotation slows as you zoom in, so fine movements stay controllable up close.
+// The earth falls off much more sharply since its min zoom sits right at the surface.
 function speedScale() {
-  return THREE.MathUtils.clamp(camDist / ZOOM[mode].base, 0.22, 1.4);
+  const t = THREE.MathUtils.clamp(camDist / ZOOM[mode].base, 0, 1.4);
+  if (mode === 'earth') return THREE.MathUtils.clamp(Math.pow(t, 2.6), 0.035, 1.4);
+  return THREE.MathUtils.clamp(t, 0.22, 1.4);
 }
 canvas.addEventListener('wheel', (e) => {
   if (anyModalOpen() || editMode) return;
@@ -306,7 +309,8 @@ canvas.addEventListener('wheel', (e) => {
 // Pins shrink as the camera moves in, so they don't dominate the view up close.
 let pinScale = 1;
 function updatePinScale() {
-  pinScale = THREE.MathUtils.clamp(camDist / ZOOM.earth.base, 0.22, 1);
+  const t = THREE.MathUtils.clamp(camDist / ZOOM.earth.base, 0, 1);
+  pinScale = THREE.MathUtils.clamp(Math.pow(t, 2.2), 0.045, 1);
   pinMeshes.forEach((p) => p.scale.setScalar(p === hoveredPin ? pinScale * 1.7 : pinScale));
 }
 
