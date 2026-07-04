@@ -531,7 +531,7 @@ async function boot() {
     return;
   }
 
-  hint.textContent = 'drag to rotate · click a photo';
+  hint.textContent = 'drag to rotate · click a dan';
   setTimeout(() => { hint.style.opacity = '0'; }, 8000);
 
   if (location.hash === '#earth') toEarth();
