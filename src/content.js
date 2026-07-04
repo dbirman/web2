@@ -31,7 +31,7 @@ export const MODALS = {
         <a href="https://scholar.google.com/citations?user=7EFz9rcAAAAJ&hl=en" target="_blank" rel="noopener">Publications</a>
       </div>
       <div class="logos">
-        <img src="logos/allen-institute.pdf" alt="Allen Institute / Neural Dynamics" title="Allen Institute / Neural Dynamics — Software Engineer, 2023–present" />
+        <img src="logos/allen-institute.png" alt="Allen Institute / Neural Dynamics" title="Allen Institute / Neural Dynamics — Software Engineer, 2023–present" />
         <img src="logos/UW.png" alt="University of Washington" title="University of Washington — Postdoc, 2020–2023" />
         <img src="logos/Stanford.png" alt="Stanford University" title="Stanford University — PhD Cognitive Neuroscience, 2014–2019" />
         <img src="logos/BCCN.png" alt="BCCN Berlin" title="BCCN Berlin — Research Assistant, 2012–2013" />
