@@ -82,10 +82,15 @@ export const MODALS = {
         electrophysiology atlas &mdash;
         <a href="https://ephysatlas.internationalbrainlab.org" target="_blank" rel="noopener">Brain Atlas website</a>.</p>
 
+      <h3>20 Lessons in Team Science: Learning from the Experience of the International Brain Laboratory</h3>
+      <p>Explore the raw data on our
+        <a href="https://viz.internationalbrainlab.org/" target="_blank" rel="noopener">interactive website</a>.</p>
+      ${paper(`International Brain Laboratory, Bayer, H. M., Birman, D., Chapuis, G., DeWitt, E. E. J., Freitas-Silva, L., Langdon, C., Laranjeira, I., Lau, P., Paninski, L., Picard, S., Tessereau, C., Urai, A. E., Whiteway, M. R., &amp; Winter, O. 20 Lessons in Team Science: Learning from the Experience of the International Brain Laboratory. <i>Neuron</i>.`, 'pdfs/ibl_neuron_2026.pdf')}
+
       <h3>A brain-wide map of neural activity during complex behaviour</h3>
       <p>Explore the raw data on our
         <a href="https://viz.internationalbrainlab.org/" target="_blank" rel="noopener">interactive website</a>.</p>
-      ${paper(`International Brain Laboratory, Benson, B., Benson, J., Birman, D., Bonacchi, N., Carandini, M., &hellip; &amp; Witten, I. B. A brain-wide map of neural activity during complex behaviour. <i>Neuron</i>.`, 'pdfs/ibl_neuron_2026.pdf')}
+      ${paper(`International Brain Laboratory, Benson, B., Benson, J., Birman, D., Bonacchi, N., Carandini, M., &hellip; &amp; Witten, I. B. A brain-wide map of neural activity during complex behaviour. <i>Nature</i>.`, 'pdfs/ibl_nature_2025.pdf')}
 
       <h3>Reproducibility of in-vivo electrophysiological measurements in mice</h3>
       <p>Explore the raw data on our
@@ -93,7 +98,7 @@ export const MODALS = {
       ${paper(`International Brain Laboratory, Banga, K., Benson, J., Bonacchi, N., Bruijns, S. A., Campbell, R., &hellip; &amp; Witten, I. B. (2022). Reproducibility of in-vivo electrophysiological measurements in mice. <i>bioRxiv</i>.`)}
 
       <h2>Computational models of visual attention</h2>
-      <p>In my attention research I build computational models that link behavior and physiology. In my
+      <p>In my attention research I built computational models that linked behavior and physiology. In my
         most recent attention project we developed a model of spatial attention using a convolutional
         neural network. We found that changes in tuning &mdash; such as shifts or shrinkage of receptive
         fields &mdash; don't account well for changes in task performance in a neural network, suggesting
