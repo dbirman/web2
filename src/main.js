@@ -233,6 +233,13 @@ function buildBrain(obj, savedTransforms) {
   });
 }
 
+// Box-Muller normal variate
+function randNormal(mean, std) {
+  const u1 = Math.random() || 1e-10;
+  const u2 = Math.random();
+  return mean + std * Math.sqrt(-2 * Math.log(u1)) * Math.cos(2 * Math.PI * u2);
+}
+
 // --- earth + photo pins ---
 function buildEarth(texture, rows) {
   texture.colorSpace = THREE.SRGBColorSpace;
@@ -294,7 +301,8 @@ function buildEarth(texture, rows) {
     const northTangent = worldUp.clone().addScaledVector(normal, -worldUp.dot(normal)).normalize();
     const eastTangent  = new THREE.Vector3().crossVectors(northTangent, normal);
     const faceSign     = Math.random() < 0.5 ? 1 : -1;
-    const bX = eastTangent.clone().multiplyScalar(faceSign);
+    const bX = eastTangent.clone().multiplyScalar(faceSign)
+      .applyQuaternion(new THREE.Quaternion().setFromAxisAngle(normal, randNormal(0, 15 * DEG)));
     const bZ = new THREE.Vector3().crossVectors(bX, normal);
     flagGroup.quaternion.setFromRotationMatrix(new THREE.Matrix4().makeBasis(bX, normal, bZ));
 
@@ -401,6 +409,7 @@ canvas.addEventListener('pointerup', (e) => {
 });
 
 let hoveredPin = null;
+let activePin = null; // pin whose image is currently shown — stays red until another is hovered
 function hover() {
   if (anyModalOpen() || editMode) return;
   raycaster.setFromCamera(ptr, camera);
@@ -413,9 +422,10 @@ function hover() {
     const hit = raycaster.intersectObjects(pinMeshes, true)[0];
     const pin = hit ? hit.object.parent : null; // hit.object is a child mesh; parent is the flagGroup
     if (pin !== hoveredPin) {
-      if (hoveredPin) { hoveredPin.userData.mat.color.copy(hoveredPin.userData.baseColor); }
       hoveredPin = pin;
-      if (pin) {
+      if (pin && pin !== activePin) {
+        if (activePin) activePin.userData.mat.color.copy(activePin.userData.baseColor);
+        activePin = pin;
         pin.userData.mat.color.set(0xb5544b);
         showViewer(pin.userData.row);
       }
@@ -468,6 +478,11 @@ function toEarth() {
 
 function toBrain() {
   mode = 'brain';
+  if (activePin) {
+    activePin.userData.mat.color.copy(activePin.userData.baseColor);
+    activePin = null;
+  }
+  hoveredPin = null;
   earthGroup.visible = false;
   earthFill.visible = false;
   brainGroup.visible = true;
