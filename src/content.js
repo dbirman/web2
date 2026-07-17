@@ -16,6 +16,7 @@ export const CARDS = [
   { id: 'teaching', image: 'cards/dan_teach.png',   label: 'Teaching', action: 'modal' },
   { id: 'volcano',  image: 'cards/dan_ski.png',     label: 'Volcano',  action: 'link',  href: 'https://volcano.danbirman.com' },
   { id: 'climbing', image: 'cards/dan_climb.png',   label: 'Climbing', action: 'earth' },
+  { id: 'zombie',   image: 'cards/dan_zombie.png',  label: 'Zombie',   action: 'link',  href: 'https://data.allenneuraldynamics.org/search' },
 ];
 
 export const MODALS = {
